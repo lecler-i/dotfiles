@@ -1,0 +1,85 @@
+[options]
+# font = Noto Sans 10
+font = Noto Color Emoji 10
+font = FontAwesome 10
+font = FantasqueSansMono Nerd Font Mono 11
+
+clickable_url = true
+cursor_blink  = on
+browser       = google-chrome-stable
+
+
+#solarized dark
+[colors]
+background = #002b36
+foreground = #ffffff
+
+cursorColor = #93a1a1
+pointerColorBackground = #586e75
+pointerColorForeground = #93a1a1
+
+# black dark/light
+color0 = #073642
+color8 = #002b36
+# red dark/light
+color1 = #dc322f
+color9 = #cb4b16
+# green dark/light
+color2 = #859900
+color10 = #586e75
+# yellow dark/light
+color3 = #b58900
+color11 = #657b83
+# blue dark/light
+color4 = #268bd2
+color12 = #839496
+# magenta dark/light
+color5 = #d33682
+color13 = #6c71c4
+# cyan dark/light
+color6 = #2aa198
+color14 = #93a1a1
+# white dark/light
+color7 = #eee8d5
+color15 = #fdf6e3
+
+[colors]
+
+# special
+foreground      = #f8f8f2
+foreground_bold = #f8f8f2
+cursor          = #f8f8f2
+background      = #282a36
+
+# black
+color0  = #000000
+color8  = #4d4d4d
+
+# red
+color1  = #ff5555
+color9  = #ff6e67
+
+# green
+color2  = #50fa7b
+color10 = #5af78e
+
+# yellow
+color3  = #f1fa8c
+color11 = #f4f99d
+
+# blue
+color4  = #bd93f9
+color12 = #caa9fa
+
+# magenta
+color5  = #ff79c6
+color13 = #ff92d0
+
+# cyan
+color6  = #8be9fd
+color14 = #9aedfe
+
+# white
+color7  = #bfbfbf
+color15 = #e6e6e6
+

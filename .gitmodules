@@ -1,0 +1,3 @@
+[submodule "vpn/.local/share/cryptostorm_configs"]
+	path = vpn/.local/share/cryptostorm_configs
+	url = https://github.com/cryptostorm/cryptostorm_client_configuration_files.git

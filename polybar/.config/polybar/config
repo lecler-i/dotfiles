@@ -1,0 +1,441 @@
+;:set syn=dosini
+
+[global/wm]
+margin-top = 100
+margin-bottom = 100
+
+
+[colors]
+
+fg = ${xrdb:color7}
+modfg = ${xrdb:color1}
+bg = ${xrdb:color0}
+bg-alt = ${xrdb:color7}
+bg-alrt = ${xrdb:color6}
+bg-unf = ${xrdb:color8}
+
+
+white = #d1d1d1
+gray = #585858
+black = #ce1d1d1d
+red = #c795ae
+blue = #95aec7
+yellow = #c7ae95
+green = #aec795
+
+[bar/top]
+bottom = false
+dock = false
+wm-restack = i3
+
+fixed-center = true
+height = 30
+
+module-margin-right = 2
+module-margin-left = 2
+padding-right = 2
+
+modules-left = i3 xwindow
+modules-center = mpd
+modules-right = vpnoff vpncheck wlan volume backlight date battery menu0
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+font-0 = FontAwesome:size=12;3
+font-1 = Hack:size=10;3
+font-2 = NotoColorEmoji:dpi=96
+
+tray-position = right
+
+; If true, the bar will not shift its
+; contents when the tray changes
+tray-detached = false
+
+; Tray icon max size
+tray-maxsize = 16
+
+; Enable pseudo transparency
+; Will automatically be enabled if a fully transparent
+; background color is defined using `tray-background`
+tray-transparent = false
+
+; Background color for the tray container
+; By default the tray container will use the bar
+; background color.
+; Note: 32 bit alpha blending is not supported.
+tray-background = ${root.background}
+
+; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
+tray-offset-x = 0
+tray-offset-y = 0
+
+; Pad the sides of each tray icon
+tray-padding = 0
+
+; Scale factor for tray clients
+tray-scale = 1.0
+
+[bar/bot]
+bottom = true
+
+fixed-center = true
+height = 30
+padding-right = 2
+
+module-margin-right = 2
+module-margin-left = 2
+
+modules-left =
+modules-center = mpd
+modules-right = bitcoin filesystem cpu memory updates
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+font-0 = FontAwesome:size=12;0
+font-1 = Hack:size=10;0
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted =   %free%
+label-mounted-underline = ${colors.modfg}
+label-mounted-padding = 1
+label-mounted-background = ${colors.bg}
+
+label-unmounted =
+label-unmounted-foreground = ${colors.bg}
+
+[module/i3]
+type = internal/i3
+
+label-unfocused-background = ${colors.bg}
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %index%
+label-focused-foreground = #ffffff
+label-focused-background = ${colors.bg-unf}
+label-focused-underline = ${colors.bg-alrt}
+label-focused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-unfocused = %index%
+label-unfocused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = ${colors.bg-alrt}
+label-urgent-padding = 4
+
+[module/mpd]
+type = internal/mpd
+
+format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next>
+; format-online = <icon-pause> <icon-play>  <label-song>
+format-offline = <label-offline>
+
+label-offline =   mpd is offline
+label-offline-foreground = ${colors.bg}
+
+label-song = %artist% - %title%
+label-song-maxlen = 95
+label-song-ellipsis = true
+;abel-song-background = ${colors.black}
+; label-song-padding = 0
+
+
+icon-prev = %{T4}
+icon-seekb = <<
+icon-stop = o
+icon-pause = %{T4}
+icon-play = %{T4}
+icon-next = %{T4}
+icon-seekf = >>
+
+icon-random = S
+icon-repeat = R
+
+toggle-on-foreground = #e60053
+toggle-off-foreground = #66
+
+
+[module/backlight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = BL
+
+bar-width = 10
+bar-indicator = │
+bar-indicator-foreground = #ff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = #55
+
+
+[module/cpu]
+format-label = internal/cpu
+
+format = <label>
+
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+ramp-coreload-underline = ${colors.fg}
+
+type = internal/cpu
+interval = 2
+label = %{F${colors.fg}  %percentage% %{F-}
+padding = 2
+
+label-underline = ${colors.modfg}
+label-background = ${colors.bg}
+;label-overline = ${colors.white}
+
+
+[module/memory]
+type = internal/memory
+interval = 4
+
+format = <label> <bar-used>
+
+label =
+
+bar-used-indicator =
+bar-used-width = 16
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+[module/wlan]
+type = internal/network
+interface = wlp1s0
+interval = 3.0
+
+format-connected-padding = 1
+format-disconnected-padding = 1
+
+format-connected = <label-connected>
+
+label-connected =   %essid%
+label-disconnected = 
+label-disconnected-foreground = ${colors.gray}
+
+
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-padding = 1
+format-disconnected-padding = 1
+
+format-connected-underline = ${colors.white}
+format-disconnected-underline = ${colors.gray}
+
+label-connected = 
+label-disconnected = 
+label-disconnected-foreground = ${colors.gray}
+
+
+[module/date]
+type = internal/date
+date-alt =    %A %H:%M
+date =    %d/%b %H:%M
+interval = 5
+
+format-background = ${colors.bg}
+;format-foreground = ${colors.fg}
+click-right = gsimplecal
+
+[module/volume]
+type = internal/volume
+
+format-volume = <bar-volume>
+
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+
+label-muted =  sound muted
+label-muted-foreground = ${colors.gray}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.yellow}
+bar-volume-foreground-5 = ${colors.red}
+bar-volume-gradient = false
+bar-volume-indicator = 
+bar-volume-indicator-font = 4
+bar-volume-indicator-foreground = ${colors.white}
+bar-volume-fill = 
+bar-volume-fill-font = 4
+bar-volume-empty = 
+bar-volume-empty-font = 4
+bar-volume-empty-foreground = ${colors.gray}
+
+click-right = connman-gtk
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-padding = 1
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-padding = 1
+
+format-full =   <label-full>
+format-full-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.white}
+animation-charging-framerate = 500
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 65
+
+format = <label>
+format-underline = ${colors.white}
+format-warn = <label-warn>
+format-warn-underline = ${colors.red}
+
+format-padding = 1
+format-warn-padidng = 1
+
+label =  %temperature%
+label-warn =  %temperature%
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = #55
+
+
+[module/menu0]
+type = custom/menu
+
+format = <label-toggle> <menu>
+;format-underline = ${colors.white}
+
+;format-background = ${colors.black}
+
+menu-0-0 =  shutdown
+menu-0-0-exec = shutdown now
+menu-0-1 =  restart
+menu-0-1-exec = shutdown -r now
+menu-0-2 =  cancel
+
+
+label-open = 
+label-close =
+
+[module/updates]
+type = custom/script
+
+exec = checkupdates | wc -l
+interval = 900
+
+label  =   %output%
+
+
+[module/sncf-status]
+type = custom/script
+
+exec = python2 /home/ghjkl/work/perso/polybar-sncf-module/script.py %counter%
+interval = 5
+
+label  =   %output%
+
+[module/bitcoin]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = " "
+tail = true
+format-prefix-foreground = ${colors.fg}
+exec = ~/.config/polybar/modules/bitcoin.py
+
+[module/vpncheck]
+type = custom/script
+interval = 30
+format= <label>
+format-underline = #268bd2
+format-prefix = "  "
+format-prefix-foreground = #0a0
+exec-if = nmcli c show  --active | grep -E '(vpn|tun)'
+exec = ~/.config/polybar/modules/vpn-infos.py %counter%
+
+[module/vpnoff]
+type = custom/script
+interval = 30
+format= <label>
+format-underline = #268bd2
+format-prefix = "  "
+format-prefix-foreground = #f00
+exec-if = ! (nmcli c show  --active | grep -E '(vpn|tun)')
+exec = echo 'NO VPN'

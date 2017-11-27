@@ -1,0 +1,13 @@
+root:
+  askformore: true
+  autoimport: true
+  autosync: true
+  cliptimeout: 45
+  noconfirm: false
+  nopager: false
+  path: /home/ghjkl/.password-store
+  safecontent: false
+  usesymbols: false
+  nocolor: false
+mounts: {}
+version: 1.6.1
