@@ -10,6 +10,7 @@ floating_modifier $mod
 font xft:Hack 10
 new_window pixel 2
 gaps inner 2
+
                         #border backgr. text    indicator
 client.focused          #458588 #458588 #32302f #ebdbb2
 client.unfocused        #83a598 #83a598 #32302f #83a598
@@ -78,10 +79,9 @@ bindsym XF86AudioPrev         exec --no-startup-id mpc -q prev
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 bindsym $mod+t                exec --no-startup-id touchpad_toggle
+bindsym Print                 exec scrot -e 'mv $f ~/shots/'
 
-bindsym $mod+Shift+s          exec scrot
 
-# Resize mode
 bindsym $mod+r mode "resize"
 mode "resize" {
     bindsym $left  resize shrink width 20 px or 2 ppt
@@ -97,31 +97,23 @@ assign [class="Thunderbird"] workspace 8
 assign [window_role="weechat"] workspace 10
 assign [class="Google-chrome"] workspace 7
 
-
 for_window  [title="^pinentry$"] floating enable
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
 
 # Autostart
-#exec_always --no-startup-id "setxkbmap -option caps:escape"
-#exec_always --no-startup-id "xsetroot -cursor_name left_ptr"
-exec_always --no-startup-id "feh --bg-scale ~/.config/i3/wallpaper"
+exec_always --no-startup-id "feh --bg-scale $XDG_CONFIG_HOME/i3/wallpaper"
 
 exec	      --no-startup-id "uget-chrome-wrapper"
 
-exec	    --no-startup-id "nm-applet"
-# exec        --no-startup-id "compton"
+exec	      --no-startup-id "nm-applet"
 exec        --no-startup-id "pasystray"
-exec        --no-startup-id "lightsOn"
 exec        --no-startup-id "dunst"
-
-exec        --no-startup-id "google-chrome-stable"
-# exec        --no-startup-id "rambox"
-# exec        --no-startup-id "timerescue"
-#exec        --no-startup-id "upwork"
-exec        --no-startup-id "thunderbird"
 exec        --no-startup-id "redshift"
+
+exec        --no-startup-id "i3-sensible-terminal -e 'sh -c weechat' -r weechat"
+exec        --no-startup-id "google-chrome-stable"
+exec        --no-startup-id "thunderbird"
 
 exec        "i3-sensible-terminal"
 
-exec        --no-startup-id "i3-sensible-terminal -e 'sh -c weechat' -r weechat"

@@ -1,5 +1,5 @@
 if !has('nvim')
-  set nocompatible                    " be iMproved, required
+  set nocompatible
 endif
 
 " Install VimPlug if not present
@@ -14,23 +14,15 @@ source $HOME/.config/nvim/plugins.vim
 
 "Use 24-bit (true-color) mode in Vim/Neovim
 if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
 if (has("termguicolors"))
   set termguicolors
 endif
 
 " Colorscheme
-" let g:solarized_termcolors=256
 syntax enable
 color dracula
-" set background=dark
-" let g:solarized_termtrans = 1
-" colorscheme solarized
 
 set mouse=a
 set cursorline                  " Highlight the current line
@@ -63,13 +55,10 @@ set nofoldenable                " Disable folding
 set clipboard+=unnamedplus      " Use system clipboard
 
 """ Undo settings
-set undodir=~/.vim-undo
+set undodir=$XDG_CONFIG_HOME/nvim/undo
 set undofile
 set undolevels=1000  "max number of changes that can be undone
 set undoreload=10000 "max number lines to save for undo on buffer reload
-
-" syntax sync minlines=256  " Makes big files slow
-" set synmaxcol=2048        " Also long lines are slow
 
 " Use old regexp engine
 " This speeds up Ruby syntax highlighting
@@ -82,13 +71,13 @@ autocmd! filetype make setlocal noexpandtab                " In Makefiles DO NOT
 
 autocmd BufWritePre * call TrimWhitespace() " Remove trailing whitespace when saving
 autocmd! BufReadPost * call SetCursorPosition()
-"autocmd! BufWritePost * Neomake
 
 set ff=unix
 
 " Move lines up(-) or down(_)
 noremap - ddp
 noremap _ ddkP
+
 " Write file as sudo
 cnoremap w!! w !sudo tee > /dev/null %
 
@@ -118,5 +107,5 @@ function! SetCursorPosition()
   endif
 endfunction
 
-source $HOME/.config/nvim/plugin-config.vim
+source $XDG_CONFIG_HOME/nvim/plugin-config.vim
 

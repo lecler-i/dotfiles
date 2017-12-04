@@ -24,7 +24,8 @@ yellow = #c7ae95
 green = #aec795
 
 [bar/top]
-bottom = false
+
+ottom = false
 dock = false
 wm-restack = i3
 
@@ -44,7 +45,7 @@ foreground = ${colors.fg}
 
 font-0 = FontAwesome:size=12;3
 font-1 = Hack:size=10;3
-font-2 = NotoColorEmoji:dpi=96
+font-2 = NotoColorEmoji:dpi=720
 
 tray-position = right
 

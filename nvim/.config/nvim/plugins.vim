@@ -42,8 +42,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'                 " Snippets engine
 Plug 'honza/vim-snippets'               " Snippets
 
-Plug 'suan/vim-instant-markdown'
-Plug 'suan/instant-markdown-d'
+Plug 'suan/vim-instant-markdown', {'do': 'npm install -g instant-markdown-d'}
 " Plug 'kannokanno/previm'
 " Plug 'https://github.com/DanManN/vim-razer'
 
