@@ -24,16 +24,17 @@ yellow = #c7ae95
 green = #aec795
 
 [bar/top]
+monitor = ${env:MONITOR:eDP1}
 
-ottom = false
+bottom = false
 dock = false
 wm-restack = i3
 
 fixed-center = true
 height = 30
 
-module-margin-right = 2
-module-margin-left = 2
+module-margin-right = 1
+module-margin-left = 1
 padding-right = 2
 
 modules-left = i3 xwindow
@@ -43,9 +44,9 @@ modules-right = vpnoff vpncheck wlan volume backlight date battery menu0
 background = ${colors.bg}
 foreground = ${colors.fg}
 
-font-0 = FontAwesome:size=12;3
-font-1 = Hack:size=10;3
-font-2 = NotoColorEmoji:dpi=720
+font-0 = FantasqueSansMono Nerd Font:size=10
+font-1 = Noto Color Emoji:size=12:dpi=750
+; font-0 = FantasqueSansMono Nerd Font Mono:size=10:dpi=750
 
 tray-position = right
 
@@ -78,6 +79,7 @@ tray-padding = 0
 tray-scale = 1.0
 
 [bar/bot]
+monitor = ${env:MONITOR:eDP1}
 bottom = true
 
 fixed-center = true
@@ -134,7 +136,7 @@ label-focused = %index%
 label-focused-foreground = #ffffff
 label-focused-background = ${colors.bg-unf}
 label-focused-underline = ${colors.bg-alrt}
-label-focused-padding = 4
+label-focused-padding = 2
 
 ; Available tokens:
 ;   %name%
@@ -142,7 +144,7 @@ label-focused-padding = 4
 ;   %index%
 ; Default: %icon%  %name%
 label-unfocused = %index%
-label-unfocused-padding = 4
+label-unfocused-padding = 2
 
 ; Available tokens:
 ;   %name%
@@ -151,7 +153,7 @@ label-unfocused-padding = 4
 ; Default: %icon%  %name%
 label-visible = %index%
 label-visible-underline = #555555
-label-visible-padding = 4
+label-visible-padding = 2
 
 ; Available tokens:
 ;   %name%
@@ -161,7 +163,7 @@ label-visible-padding = 4
 label-urgent = %index%
 label-urgent-foreground = #000000
 label-urgent-background = ${colors.bg-alrt}
-label-urgent-padding = 4
+label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd

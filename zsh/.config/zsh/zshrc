@@ -8,7 +8,6 @@ antigen bundle j-arnaiz/common-aliases
 antigen apply
 
 source ~/.antigen/bundles/wting/autojump/bin/autojump.zsh
-source <(gopass completion zsh)
 
 alias ls="ls --color"
 
@@ -70,4 +69,5 @@ bindkey '^x^e' edit-command-line
 
 # source /usr/share/autojump/autojump.zsh
 
+source <(gopass completion zsh)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
