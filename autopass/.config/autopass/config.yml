@@ -22,4 +22,5 @@ browsers:
   - google-chrome-stable
   - chrome
   - chromium
+  - qutebrowser
   - Google Chrome
