@@ -7,9 +7,9 @@ set $right Right
 floating_modifier $mod
 
 # Theme
-font xft:Hack 10
+font xft:FantasqueSansMono 10
 new_window pixel 2
-gaps inner 2
+gaps inner 4
 
                         #border backgr. text    indicator
 client.focused          #458588 #458588 #32302f #ebdbb2
@@ -85,10 +85,10 @@ bindsym $mod+z                [window_role="browser"] focus
 
 bindsym $mod+r mode "resize"
 mode "resize" {
-    bindsym $left  resize shrink width 20 px or 2 ppt
-    bindsym $down  resize grow height 20 px or 2 ppt
-    bindsym $up    resize shrink height 20 px or 2 ppt
-    bindsym $right resize grow width 20 px or 2 ppt
+    bindsym h      resize shrink width 20 px or 2 ppt
+    bindsym j      resize grow height 20 px or 2 ppt
+    bindsym k      resize shrink height 20 px or 2 ppt
+    bindsym l      resize grow width 20 px or 2 ppt
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -96,25 +96,17 @@ mode "resize" {
 
 assign [class="Thunderbird"] workspace 8
 assign [window_role="weechat"] workspace 10
-assign [class="Google-chrome"] workspace 7
+assign [class="qutebrowser"] workspace 7
 
 for_window  [title="^pinentry$"] floating enable
 
 exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
 
-# Autostart
-exec_always --no-startup-id "feh --bg-scale $XDG_CONFIG_HOME/i3/wallpaper"
-
-exec	      --no-startup-id "uget-chrome-wrapper"
-
-exec	      --no-startup-id "nm-applet"
-exec        --no-startup-id "pasystray"
 exec        --no-startup-id "dunst"
 exec        --no-startup-id "redshift"
 
-exec        --no-startup-id "i3-sensible-terminal -e 'sh -c weechat' -r weechat"
-exec        --no-startup-id "google-chrome-stable"
+exec        --no-startup-id "i3-sensible-terminal -e 'sh -c \'while weechat; do echo $?; done;\'' -r weechat"
+exec        --no-startup-id "qutebrowser"
 exec        --no-startup-id "thunderbird"
-
 exec        "i3-sensible-terminal"
 
