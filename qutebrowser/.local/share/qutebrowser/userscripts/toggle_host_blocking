@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+shopt -s nocasematch # make regexp matching in bash case insensitive
+
+if [ -z "$QUTE_FIFO" ] ; then
+    exit
+fi
+
+error() {
+    local msg="$*"
+    echo "message-error '${msg//\'/\\\'}'" >> $QUTE_FIFO
+}
+msg() {
+    local msg="$*"
+    echo "message-info '${msg//\'/\\\'}'" >> $QUTE_FIFO
+}
+
+host_blocking_key="content.host_blocking.enabled"
+
+
+echo "config-cycle -t -p $host_blocking_key" >> $QUTE_FIFO
