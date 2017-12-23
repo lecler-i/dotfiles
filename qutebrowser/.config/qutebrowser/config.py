@@ -22,6 +22,15 @@ c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleW
 c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn-social/hosts', 'https://www.malwaredomainlist.com/hostslist/hosts.txt',
                                  'http://someonewhocares.org/hosts/hosts', 'http://winhelp2002.mvps.org/hosts.zip', 'http://malwaredomains.lehigh.edu/files/justdomains.zip', 'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext']
 
+# Enable plugins in Web pages.
+# Type: Bool
+c.content.plugins = False
+
+# Open new windows in private browsing mode which does not record
+# visited pages.
+# Type: Bool
+c.content.private_browsing = False
+
 # Duration (in milliseconds) to wait before removing finished downloads.
 # If set to -1, downloads are never removed.
 # Type: Int
@@ -44,7 +53,7 @@ c.editor.encoding = 'utf-8'
 # Default monospace fonts. Whenever "monospace" is used in a font
 # setting, it's replaced with the fonts listed here.
 # Type: Font
-c.fonts.monospace = '"Noto Color Emoji", "FantasqueSansMono Nerd Font", "xos4 Terminus", Terminus, Monospace, "DejaVu Sans Mono", Monaco, "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", Courier, "Liberation Mono", monospace, Fixed, Consolas, Terminal'
+c.fonts.monospace = '"FantasqueSansMono Nerd Font", "xos4 Terminus", Terminus, Monospace, "DejaVu Sans Mono", Monaco, "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", Courier, "Liberation Mono", monospace, Fixed, Consolas, Terminal'
 
 # Enable Opera-like mouse rocker gestures. This disables the context
 # menu.
@@ -74,7 +83,7 @@ c.scrolling.smooth = True
 #   - bottom
 #   - left
 #   - right
-c.tabs.position = 'left'
+c.tabs.position = 'right'
 
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
@@ -95,7 +104,7 @@ c.url.searchengines = {
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
-c.url.start_pages = c.url.default_page
+c.url.start_pages = 'file:///home/ghjkl/.config/web/startpage/index.html'
 
 # Format to use for the window title. The same placeholders like for
 # `tabs.title.format` are defined.
@@ -103,8 +112,9 @@ c.url.start_pages = c.url.default_page
 c.window.title_format = '{perc}{title}{title_sep}{current_url} - qutebrowser'
 
 # Bindings for normal mode
-config.bind(',p', 'spawn --userscript fill_password')
 config.bind(',m', 'spawn --userscript spawn_mpv')
+config.bind(',p', 'spawn --userscript fill_password')
 config.bind(',r', 'spawn --userscript readability')
-config.bind(',t', 'set-cmd-text -s :spawn --userscript add_task')
+config.bind(',s', 'spawn --userscript view_source')
+config.bind(',t', 'set-cmd-text -s :spawn --userscript add_task qutebrowser')
 config.bind('gi', 'hint inputs')
