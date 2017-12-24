@@ -7,3 +7,5 @@ global:
     q: quit
     w: session-save
     wq: quit --save
+  completion.height: 25%
+  tabs.position: left

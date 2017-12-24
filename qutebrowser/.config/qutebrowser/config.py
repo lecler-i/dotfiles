@@ -6,6 +6,15 @@
 # Uncomment this to still load settings configured via autoconfig.yml
 # config.load_autoconfig()
 
+# Aliases for commands. The keys of the given dictionary are the
+# aliases, while the values are the commands they map to.
+# Type: Dict
+c.aliases = {'w': 'session-save', 'q': 'quit', 'wq': 'quit --save'}
+
+# Height (in pixels or as percentage of the window) of the completion.
+# Type: PercOrInt
+c.completion.height = '25%'
+
 # Custom headers for qutebrowser HTTP requests.
 # Type: Dict
 c.content.headers.custom = {}
@@ -13,6 +22,10 @@ c.content.headers.custom = {}
 # User agent to send. Unset to send the default.
 # Type: String
 c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
+
+# Enable host blocking.
+# Type: Bool
+c.content.host_blocking.enabled = False
 
 # List of URLs of lists which contain hosts to block.  The file can be
 # in one of the following formats:  - An `/etc/hosts`-like file - One
@@ -83,7 +96,7 @@ c.scrolling.smooth = True
 #   - bottom
 #   - left
 #   - right
-c.tabs.position = 'right'
+c.tabs.position = 'left'
 
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
@@ -116,5 +129,5 @@ config.bind(',m', 'spawn --userscript spawn_mpv')
 config.bind(',p', 'spawn --userscript fill_password')
 config.bind(',r', 'spawn --userscript readability')
 config.bind(',s', 'spawn --userscript view_source')
-config.bind(',t', 'set-cmd-text -s :spawn --userscript add_task qutebrowser')
+config.bind(',t', 'set-cmd-text -s :spawn --userscript add_task +qutebrowser')
 config.bind('gi', 'hint inputs')
