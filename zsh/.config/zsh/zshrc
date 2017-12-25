@@ -1,4 +1,6 @@
-source ~/.config/zsh/antigen.zsh
+export XDG_CONFIG_HOME=$HOME/.config
+
+source $XDG_CONFIG_HOME/zsh/antigen.zsh
 
 antigen bundle mafredri/zsh-async
 antigen bundle intelfx/pure
@@ -7,13 +9,12 @@ antigen bundle j-arnaiz/common-aliases
 
 antigen apply
 
-source ~/.antigen/bundles/wting/autojump/bin/autojump.zsh
+source $HOME/.antigen/bundles/wting/autojump/bin/autojump.zsh
 
 alias ls="ls --color"
 
-export XDG_CONFIG_HOME=~/.config
 
-export GOPATH=/home/ghjkl/.go
+export GOPATH=$HOME/.go
 export ANDROID_HOME=/opt/android-sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 
@@ -21,7 +22,8 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools
 export PATH=$PATH:$ANDROID_NDK
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/home/ghjkl/.gem/ruby/2.4.0/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
+export PATH=$PATH:$HOME/.local/bin
 
 export EDITOR=nvim
 
@@ -62,7 +64,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 setopt appendhistory autocd beep extendedglob notify
-# bindkey -v # You can't stop here, you're in Vim country!...
+bindkey -v # You can't stop here, you're in Vim country!...
 
 bindkey '^R' history-incremental-search-backward
 bindkey '^x^e' edit-command-line
@@ -70,4 +72,6 @@ bindkey '^x^e' edit-command-line
 # source /usr/share/autojump/autojump.zsh
 
 source <(gopass completion zsh)
+complete -F _gopass_bash_autocomplete pass
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)

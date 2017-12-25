@@ -22,7 +22,7 @@ bindsym $mod+Return           exec i3-sensible-terminal
 bindsym $mod+d                exec rofi -show run
 bindsym $mod+n                exec networkmanager_dmenu
 bindsym $mod+p                exec autopass
-bindsym $mod+l                exec i3lock-fancy -p
+bindsym $mod+l                exec $HOME/.local/bin/i3lock.sh
 bindsym $mod+Shift+e          exec exit_menu
 bindsym $mod+i                exec xcalib -invert -alter
 
