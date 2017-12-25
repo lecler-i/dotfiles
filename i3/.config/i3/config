@@ -79,7 +79,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 bindsym $mod+t                exec --no-startup-id touchpad_toggle
 bindsym Print                 exec scrot -e 'mv $f ~/shots/'
 bindsym $mod+a                [class="Termite" title="vim"] focus
-bindsym $mod+z                [window_role="browser"] focus
+bindsym $mod+z                [class="qutebrowser"] focus
 # move workspace to output left
 
 
@@ -103,6 +103,7 @@ for_window  [title="^pinentry$"] floating enable
 exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
 
 exec        --no-startup-id "dunst"
+exec        --no-startup-id "nm-applet"
 exec        --no-startup-id "redshift"
 
 exec        --no-startup-id "i3-sensible-terminal -e 'sh -c \'while weechat; do echo $?; done;\'' -r weechat"
