@@ -128,6 +128,7 @@ c.window.title_format = '{perc}{title}{title_sep}{current_url} - qutebrowser'
 config.bind(',m', 'spawn --userscript spawn_mpv')
 config.bind(',p', 'spawn --userscript fill_password')
 config.bind(',r', 'spawn --userscript readability')
+config.bind(',a', 'spawn --userscript toggle_host_blocking')
 config.bind(',s', 'spawn --userscript view_source')
 config.bind(',t', 'set-cmd-text -s :spawn --userscript add_task +qutebrowser')
 config.bind('gi', 'hint inputs')

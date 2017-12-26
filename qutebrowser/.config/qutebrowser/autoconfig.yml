@@ -3,9 +3,4 @@
 
 config_version: 1
 global:
-  aliases:
-    q: quit
-    w: session-save
-    wq: quit --save
-  completion.height: 25%
-  tabs.position: left
+  content.host_blocking.enabled: false
