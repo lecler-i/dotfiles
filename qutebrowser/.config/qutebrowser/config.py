@@ -25,15 +25,14 @@ c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleW
 
 # Enable host blocking.
 # Type: Bool
-c.content.host_blocking.enabled = False
+c.content.host_blocking.enabled = True
 
 # List of URLs of lists which contain hosts to block.  The file can be
 # in one of the following formats:  - An `/etc/hosts`-like file - One
 # host per line - A zip-file of any of the above, with either only one
 # file, or a file   named `hosts` (with any extension).
 # Type: List of Url
-c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn-social/hosts', 'https://www.malwaredomainlist.com/hostslist/hosts.txt',
-                                 'http://someonewhocares.org/hosts/hosts', 'http://winhelp2002.mvps.org/hosts.zip', 'http://malwaredomains.lehigh.edu/files/justdomains.zip', 'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext']
+c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn-social/hosts', 'https://www.malwaredomainlist.com/hostslist/hosts.txt', 'http://someonewhocares.org/hosts/hosts', 'http://winhelp2002.mvps.org/hosts.zip', 'http://malwaredomains.lehigh.edu/files/justdomains.zip', 'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext']
 
 # Enable plugins in Web pages.
 # Type: Bool
@@ -56,8 +55,7 @@ c.downloads.remove_finished = 30
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
 # Type: ShellCommand
-c.editor.command = ['termite', '-e',
-                    "nvim {file} -c 'normal {line}G{column0}l'"]
+c.editor.command = ['termite', '-e', "nvim {file} -c 'normal {line}G{column0}l'"]
 
 # Encoding to use for the editor.
 # Type: Encoding
@@ -112,8 +110,7 @@ c.url.default_page = 'file:///home/ghjkl/.config/web/startpage/index.html'
 # used by prepending the search engine name to the search term, e.g.
 # `:open google qutebrowser`.
 # Type: Dict
-c.url.searchengines = {
-    'DEFAULT': 'https://www.startpage.com/do/search?prf=bcbe0abdbd142a625d3e86470f55dfdf&q={}'}
+c.url.searchengines = {'DEFAULT': 'https://www.startpage.com/do/search?prf=bcbe0abdbd142a625d3e86470f55dfdf&q={}'}
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
@@ -125,10 +122,10 @@ c.url.start_pages = 'file:///home/ghjkl/.config/web/startpage/index.html'
 c.window.title_format = '{perc}{title}{title_sep}{current_url} - qutebrowser'
 
 # Bindings for normal mode
+config.bind(',a', 'spawn --userscript toggle_host_blocking')
 config.bind(',m', 'spawn --userscript spawn_mpv')
 config.bind(',p', 'spawn --userscript fill_password')
 config.bind(',r', 'spawn --userscript readability')
-config.bind(',a', 'spawn --userscript toggle_host_blocking')
 config.bind(',s', 'spawn --userscript view_source')
 config.bind(',t', 'set-cmd-text -s :spawn --userscript add_task +qutebrowser')
 config.bind('gi', 'hint inputs')
