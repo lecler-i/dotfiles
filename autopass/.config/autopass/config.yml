@@ -16,7 +16,7 @@ cache_key: me@thomas.sh
 # # (default)
 #   clip_command: 'xclip'
 # # or
-#   clip_command: 'xclip -selection clipboard'
+clip_command: 'xclip -selection clipboard'
 # # Browsers window names to use for matching
 browsers:
   - google-chrome-stable
