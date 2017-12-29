@@ -3,7 +3,7 @@ font = FantasqueSansMono Nerd Font 11
 
 clickable_url = true
 cursor_blink  = on
-browser       = google-chrome-stable
+browser       = qutebrowser
 
 # Dracula Colors
 [colors]

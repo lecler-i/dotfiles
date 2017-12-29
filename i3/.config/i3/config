@@ -81,7 +81,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 bindsym $mod+t                exec --no-startup-id touchpad_toggle
 bindsym Print                 exec scrot -e 'mv $f ~/shots/'
 bindsym $mod+a                [class="Termite" title="vim"] focus
-bindsym $mod+z                [class="qutebrowser"] focus
+bindsym $mod+z                [class="qutebrowser" title="^.+qutebrowser"] focus
 # move workspace to output left
 
 

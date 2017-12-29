@@ -24,7 +24,7 @@ export PATH=$PATH:$ANDROID_NDK
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:$HOME/.local/bin
-
+export PATH=$PATH:`yarn global bin`
 export EDITOR=nvim
 
 source /usr/share/nvm/init-nvm.sh
