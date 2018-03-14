@@ -1,5 +1,3 @@
-export XDG_CONFIG_HOME=$HOME/.config
-
 source $XDG_CONFIG_HOME/zsh/antigen.zsh
 
 antigen bundle mafredri/zsh-async
@@ -22,9 +20,10 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools
 export PATH=$PATH:$ANDROID_NDK
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:`yarn global bin`
+export PATH=$PATH:`yarn global bin --offline`
 export EDITOR=nvim
 
 source /usr/share/nvm/init-nvm.sh
