@@ -30,6 +30,7 @@ let g:indentLine_char = '┆'
 let g:deoplete#enable_at_startup = 1
 " Improve ultisnips and deoplete integration
 call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#case_insensitive = 1
 let g:deoplete#sources#jedi#show_docstring = 1
@@ -79,6 +80,11 @@ endfunction
 
 """ Custom Javascript configuration
 let g:javascript_plugin_jsdoc = 1    " Highlight JSDoc
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'cpp': ['clang', 'gcc'],
+\}
 
 let g:ale_fixers = {
 \   'python': ['autopep8'],
