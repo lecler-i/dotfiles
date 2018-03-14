@@ -39,7 +39,7 @@ padding-right = 2
 
 modules-left = i3 xwindow
 modules-center = mpd
-modules-right = vpnoff vpncheck wlan volume backlight date battery menu0
+modules-right = vpnoff vpncheck wlan volume backlight time_paris date battery menu0
 
 background = ${colors.bg}
 foreground = ${colors.fg}
@@ -96,8 +96,8 @@ modules-right = bitcoin filesystem cpu memory updates
 background = ${colors.bg}
 foreground = ${colors.fg}
 
-font-0 = FontAwesome:size=12;0
-font-1 = Hack:size=10;0
+font-0 = FantasqueSansMono Nerd Font:size=10
+font-1 = Noto Color Emoji:size=12:dpi=750
 
 [module/xwindow]
 type = internal/xwindow
@@ -396,6 +396,14 @@ menu-0-2 =  cancel
 
 label-open = 
 label-close =
+
+[module/time_paris]
+type = custom/script
+
+exec = date --date='TZ="Europe/Paris"' +%H:%M
+interval = 10000
+
+label  =  %output%
 
 [module/updates]
 type = custom/script
