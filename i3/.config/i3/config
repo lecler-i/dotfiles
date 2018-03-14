@@ -21,9 +21,8 @@ client.urgent           #fb4934 #fb4934 #32302f #fb4934
 bindsym $mod+Return           exec i3-sensible-terminal
 bindsym $mod+d                exec rofi -show run
 bindsym $mod+n                exec networkmanager_dmenu
-bindsym $mod+p                exec autopass
+bindsym $mod+p                exec rofi-pass
 bindsym $mod+l                exec $HOME/.local/bin/i3lock.sh
-bindsym $mod+Shift+e          exec exit_menu
 bindsym $mod+i                exec xcalib -invert -alter
 
 bindsym $mod+Shift+q          kill
@@ -80,7 +79,7 @@ bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 bindsym $mod+t                exec --no-startup-id touchpad_toggle
 bindsym Print                 exec scrot -e 'mv $f ~/shots/'
-bindsym $mod+a                [class="Termite" title="vim"] focus
+bindsym $mod+a                [title="^((?!__focused__).)*vim.*$"] focus
 bindsym $mod+z                [class="qutebrowser" title="^.+qutebrowser"] focus
 # move workspace to output left
 
