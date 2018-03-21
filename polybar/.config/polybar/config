@@ -400,7 +400,7 @@ label-close =
 [module/time_paris]
 type = custom/script
 
-exec = date --date='TZ="Europe/Paris"' +%H:%M
+exec = TZ="Europe/Paris" date +%H:%M
 interval = 10000
 
 label  =  %output%
