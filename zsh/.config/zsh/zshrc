@@ -12,6 +12,7 @@ source $HOME/.antigen/bundles/wting/autojump/bin/autojump.zsh
 alias ls="ls --color"
 
 
+export BROWSER=/usr/bin/qutebrowser
 export GOPATH=$HOME/.go
 export ANDROID_HOME=/opt/android-sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
