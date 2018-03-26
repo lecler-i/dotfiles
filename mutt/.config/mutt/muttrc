@@ -1,0 +1,67 @@
+source ~/.config/mutt/accs/thomasle@mailbox.org
+source ~/.config/mutt/muttcol
+source ~/.config/mutt/keybinds.muttrc
+
+set sort = 'date'
+set editor = nvim
+set timeout = "5"
+set mail_check = "10"
+set mailcap_path = ~/.config/mutt/mailcap
+set date_format="%m/%d %I:%M"
+set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+mono bold bold
+mono underline underline
+mono indicator reverse
+color index yellow default '.*'
+color index_author red default '.*'
+color index_number blue default
+color index_subject cyan default '.s'
+color index_size green default
+color normal default default
+color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+
+# Set up preview pane for messages
+set pager_index_lines 	= 10 	# number of index lines to show
+set pager_context 		= 3     # number of context lines to show
+set pager_stop          = yes   # don't go to next message automatically
+set menu_scroll         = yes   # scroll in menus
+set tilde               = yes   # show tildes like in vim
+set markers             = no 	# no ugly plus signs
+
+set sidebar_visible = yes
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats = yes
+set sidebar_sort_method = 'name'
+set sidebar_new_mail_only = no
+set imap_check_subscribed
+
+set nm_default_uri = "notmuch:///home/ghjkl/Mail/"
+
+set query_command= "khard email --parsable '%s'"
+bind editor <Tab> complete-query
+bind editor ^T    complete
+
+macro index,pager A \
+    "<pipe-message>khard add-email<return>" \
+    "add the sender email address to khard"
+
+
+
+# bind editor <space> noop
+# bind index g noop
+# bind index G last-entry
+# bind index gg first-entry
+# bind index d half-down
+# bind index u half-up
+# bind index D delete-message
+# bind index U undelete-message
+# bind index F search
+# bind index R group-reply
+#
+# macro index X '<sync-mailbox><enter-command>source ~/.config/mutt/accs/degnus@gmail.com<enter><change-folder>!<enter>'
+# macro index K '<sync-mailbox><enter-command>source ~/.config/mutt/cocklirc<enter><change-folder>!<enter>'
