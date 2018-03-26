@@ -1,0 +1,52 @@
+#################################
+######## Account mailbox ########
+#################################
+
+IMAPAccount thomasle-mailbox
+Host imap.mailbox.org
+User thomasle@mailbox.org
+PassCmd "pass mail/mailbox.org/thomasle | head -n1"
+SSLType IMAPS
+
+# Remote storage
+IMAPStore thomasle-mailbox-remote
+Account thomasle-mailbox
+
+# Local storage
+MaildirStore thomasle-mailbox-local
+Path ~/Mail/thomasle@mailbox.org/
+Inbox ~/Mail/thomasle@mailbox.org/inbox
+
+Channel thomasle-mailbox-archive
+Master ":thomasle-mailbox-remote:Archive"
+Slave ":thomasle-mailbox-local:archive"
+Create Slave
+SyncState *
+Sync Push Flags
+
+Channel thomasle-mailbox-trash
+Master ":thomasle-mailbox-remote:Trash"
+Slave ":thomasle-mailbox-local:trash"
+Create Slave
+Sync All
+
+Channel thomasle-mailbox-drafts
+Master ":thomasle-mailbox-remote:Drafts"
+Slave ":thomasle-mailbox-local:drafts"
+Create Slave
+Sync All
+Expunge Both
+
+Channel thomasle-mailbox-sent
+Master ":thomasle-mailbox-remote:Sent"
+Slave ":thomasle-mailbox-local:sent"
+Create Slave
+Sync All
+Expunge Both
+
+Channel thomasle-mailbox-inbox
+Master ":thomasle-mailbox-remote:Inbox"
+Slave ":thomasle-mailbox-local:inbox"
+Create Slave
+Sync All
+Expunge Both
