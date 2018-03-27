@@ -1,6 +1,6 @@
 # vim: filetype=muttrc
 
-set folder = "~/Mail/thomasle@mailbox.org/"
+set folder = "~/.mails/thomasle@mailbox.org/"
 set spoolfile = "+/inbox"
 set postponed = "+/drafts"
 set trash = "+/trash"
@@ -12,4 +12,4 @@ set realname = "Thomas LECLERCQ"
 
 set pgp_sign_as=46DD1F8DE5E961CE530B991CEF9A5C8ABCF6AC69
 
-mailboxes ="inbox" ="drafts" ="archive"
+mailboxes ="inbox" ="sent" ="archive" ="draft" ="github-notifications"

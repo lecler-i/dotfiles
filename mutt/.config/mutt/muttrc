@@ -1,5 +1,5 @@
 source ~/.config/mutt/accs/thomasle@mailbox.org
-source ~/.config/mutt/muttcol
+source ~/.config/mutt/vombatidae-color.muttrc
 source ~/.config/mutt/keybinds.muttrc
 
 set sort = 'date'
@@ -40,9 +40,17 @@ set sidebar_sort_method = 'name'
 set sidebar_new_mail_only = no
 set imap_check_subscribed
 
-set nm_default_uri = "notmuch:///home/ghjkl/Mail/"
+set nm_default_uri = "notmuch:///home/ghjkl/.mails/
 
 set query_command= "khard email --parsable '%s'"
+
+set edit_headers
+
+alias mailbox Thomas LECLERCQ <thomasle@mailbox.org>
+alias gmail Thomas LECLERCQ <degnus@gmail.com>
+alias thomash Thomas LECLERCQ <me@thomas.sh>
+
+
 bind editor <Tab> complete-query
 bind editor ^T    complete
 
@@ -50,7 +58,10 @@ macro index,pager A \
     "<pipe-message>khard add-email<return>" \
     "add the sender email address to khard"
 
+bind index,pager \` modify-labels
 
+bind index,pager x vfolder-from-query
+bind index,pager X change-vfolder
 
 # bind editor <space> noop
 # bind index g noop

@@ -5,7 +5,7 @@
 IMAPAccount thomasle-mailbox
 Host imap.mailbox.org
 User thomasle@mailbox.org
-PassCmd "pass mail/mailbox.org/thomasle | head -n1"
+PassCmd "pass mail/mailbox.org/thomasle"
 SSLType IMAPS
 
 # Remote storage
@@ -14,8 +14,8 @@ Account thomasle-mailbox
 
 # Local storage
 MaildirStore thomasle-mailbox-local
-Path ~/Mail/thomasle@mailbox.org/
-Inbox ~/Mail/thomasle@mailbox.org/inbox
+Path ~/.mails/thomasle@mailbox.org/
+Inbox ~/.mails/thomasle@mailbox.org/inbox
 
 Channel thomasle-mailbox-archive
 Master ":thomasle-mailbox-remote:Archive"
@@ -47,6 +47,13 @@ Expunge Both
 Channel thomasle-mailbox-inbox
 Master ":thomasle-mailbox-remote:Inbox"
 Slave ":thomasle-mailbox-local:inbox"
+Create Slave
+Sync All
+Expunge Both
+
+Channel thomasle-mailbox-github-notifications
+Master ":thomasle-mailbox-remote:github-notifications"
+Slave ":thomasle-mailbox-local:github-notifications"
 Create Slave
 Sync All
 Expunge Both
