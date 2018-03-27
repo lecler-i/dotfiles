@@ -91,7 +91,7 @@ module-margin-left = 2
 
 modules-left =
 modules-center = mpd
-modules-right = bitcoin filesystem cpu memory updates
+modules-right = mail-count bitcoin filesystem cpu memory updates
 
 background = ${colors.bg}
 foreground = ${colors.fg}
@@ -450,3 +450,13 @@ format-prefix = "  "
 format-prefix-foreground = #f00
 exec-if = ! (nmcli c show  --active | grep -E '(vpn|tun)')
 exec = echo 'NO VPN'
+
+
+[module/mail-count]
+type = custom/script
+interval = 10
+format= <label>
+format-suffix= " Emails"
+exec = find ~/.mails/thomasle@mailbox.org/inbox/new -type f | wc -l
+
+
