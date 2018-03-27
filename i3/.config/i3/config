@@ -95,7 +95,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-assign [class="Thunderbird"] workspace 8
+assign [window_role="neomutt"] workspace 8
 assign [window_role="weechat"] workspace 10
 assign [class="qutebrowser"] workspace 7
 
@@ -107,8 +107,8 @@ exec        --no-startup-id "dunst"
 exec        --no-startup-id "nm-applet"
 exec        --no-startup-id "redshift"
 
-exec        --no-startup-id "i3-sensible-terminal -e 'sh -c \'while weechat; do echo $?; done;\'' -r weechat"
 exec        --no-startup-id "qutebrowser"
-exec        --no-startup-id "thunderbird"
+exec        --no-startup-id "i3-sensible-terminal -e weechat -r weechat"
+exec        --no-startup-id "i3-sensible-terminal -e neomutt -r neomutt"
 exec        "i3-sensible-terminal"
 
