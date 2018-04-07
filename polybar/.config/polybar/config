@@ -6,8 +6,8 @@ margin-bottom = 100
 
 
 [colors]
-
-fg = ${xrdb:color15}
+/* fg = ${xrdb:color15} */
+fg = #aaa
 modfg = ${xrdb:color1}
 bg = ${xrdb:color0}
 bg-alt = ${xrdb:color7}
@@ -463,7 +463,5 @@ exec = find ~/.mails/thomasle@mailbox.org/inbox/new -type f | wc -l
 type = custom/script
 interval = 10
 format= <label>
-exec = echo [%counter%] $(task _get $(((%counter% % (`task count status:pending`) + 1))).description)
-
-
+exec = ~/.config/polybar/modules/taskwarrior.sh %counter%
 
