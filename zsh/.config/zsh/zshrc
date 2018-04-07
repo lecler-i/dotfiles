@@ -17,13 +17,14 @@ export GOPATH=$HOME/.go
 export ANDROID_HOME=/opt/android-sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 
+export OPENFAAS_URL=https://gateway.openfaas.rancher.thomas.sh/
+
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools
 export PATH=$PATH:$ANDROID_NDK
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
-export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:`yarn global bin --offline`
 export EDITOR=nvim
 
@@ -73,5 +74,7 @@ bindkey '^x^e' edit-command-line
 
 source <(gopass completion zsh)
 complete -F _gopass_bash_autocomplete pass
+
+
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
