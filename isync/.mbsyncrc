@@ -5,7 +5,7 @@
 IMAPAccount thomasle-mailbox
 Host imap.mailbox.org
 User thomasle@mailbox.org
-PassCmd "pass mail/mailbox.org/thomasle"
+PassCmd "pass zxc/mailbox.org/thomasle"
 SSLType IMAPS
 
 # Remote storage
