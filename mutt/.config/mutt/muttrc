@@ -1,5 +1,5 @@
 source ~/.config/mutt/accs/thomasle@mailbox.org
-source ~/.config/mutt/vombatidae-color.muttrc
+source ~/.config/mutt/dracula-color.muttrc
 source ~/.config/mutt/keybinds.muttrc
 
 set sort = 'date'
@@ -50,6 +50,9 @@ alias mailbox Thomas LECLERCQ <thomasle@mailbox.org>
 alias gmail Thomas LECLERCQ <degnus@gmail.com>
 alias thomash Thomas LECLERCQ <me@thomas.sh>
 
+set crypt_use_gpgme
+set crypt_replysign
+set crypt_replysignencrypted=yes
 
 bind editor <Tab> complete-query
 bind editor ^T    complete

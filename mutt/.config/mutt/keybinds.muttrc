@@ -62,5 +62,5 @@ macro attach,compose gx  "<pipe-entry>urlview<Enter>"                           
 bind editor \Cp history-up
 bind editor \Cn history-down
 
-macro index S ":set confirmappend=no delete=yes\n<tag-prefix><save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
+macro index,generic,pager S ":set confirmappend=no delete=yes\n<tag-prefix><save-message>=archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
 macro index <f5> "!mbsync -a^M" "Update through mbsync"
