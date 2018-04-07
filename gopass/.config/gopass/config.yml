@@ -1,7 +1,7 @@
 root:
   askformore: true
   autoimport: true
-  autosync: true
+  autosync: false
   cliptimeout: 45
   noconfirm: false
   nopager: false
