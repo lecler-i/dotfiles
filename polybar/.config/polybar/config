@@ -7,7 +7,7 @@ margin-bottom = 100
 
 [colors]
 
-fg = ${xrdb:color7}
+fg = ${xrdb:color15}
 modfg = ${xrdb:color1}
 bg = ${xrdb:color0}
 bg-alt = ${xrdb:color7}
@@ -90,7 +90,7 @@ module-margin-right = 2
 module-margin-left = 2
 
 modules-left =
-modules-center = mpd
+modules-center = taskwarrior
 modules-right = mail-count bitcoin filesystem cpu memory updates
 
 background = ${colors.bg}
@@ -458,5 +458,12 @@ interval = 10
 format= <label>
 format-suffix= " Emails"
 exec = find ~/.mails/thomasle@mailbox.org/inbox/new -type f | wc -l
+
+[module/taskwarrior]
+type = custom/script
+interval = 10
+format= <label>
+exec = echo [%counter%] $(task _get $(((%counter% % (`task count status:pending`) + 1))).description)
+
 
 
