@@ -25,12 +25,16 @@ c.completion.height = '25%'
 
 # Custom headers for qutebrowser HTTP requests.
 # Type: Dict
-c.content.headers.custom = {}
+c.content.headers.accept_language = 'en-US,enq=0.5'
+c.content.headers.custom = {
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+}
+c.content.webgl = False
 
 # User agent to send. Unset to send the default.
 # Type: String
-c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
-
+#  c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
+c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0'
 # Enable host blocking.
 # Type: Bool
 c.content.host_blocking.enabled = True
@@ -135,6 +139,7 @@ c.window.title_format = '{perc}{title}{title_sep}{current_url} - qutebrowser'
 # Bindings for normal mode
 config.bind(',a', 'spawn --userscript toggle_host_blocking')
 config.bind(',m', 'spawn --userscript spawn_mpv')
+config.bind(',f', 'spawn --userscript ttrss_add')
 config.bind(',p', 'spawn --userscript fill_password')
 config.bind(',r', 'spawn --userscript readability')
 config.bind(',s', 'spawn --userscript view_source')
