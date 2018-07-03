@@ -9,8 +9,8 @@ antigen apply
 
 source $HOME/.antigen/bundles/wting/autojump/bin/autojump.zsh
 
-alias ls="ls --color"
-
+alias ls="exa"
+alias sxiv="sxiv -a"
 
 export BROWSER=/usr/bin/qutebrowser
 export GOPATH=$HOME/.go
@@ -26,6 +26,8 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:`yarn global bin --offline`
+export PATH=$PATH:/home/ghjkl/.opam/system/bin
+
 export EDITOR=nvim
 
 source /usr/share/nvm/init-nvm.sh
@@ -72,9 +74,9 @@ bindkey '^x^e' edit-command-line
 
 # source /usr/share/autojump/autojump.zsh
 
+
 source <(gopass completion zsh)
-complete -F _gopass_bash_autocomplete pass
 
-
+ . /home/ghjkl/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
