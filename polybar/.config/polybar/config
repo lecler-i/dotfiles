@@ -38,7 +38,7 @@ module-margin-left = 1
 padding-right = 2
 
 modules-left = i3 xwindow
-modules-center = mpd
+modules-center =
 modules-right = vpnoff vpncheck wlan volume backlight time_paris date battery menu0
 
 background = ${colors.bg}
@@ -81,7 +81,7 @@ tray-scale = 1.0
 [bar/bot]
 monitor = ${env:MONITOR:eDP1}
 bottom = true
-
+enable-ipc = true
 fixed-center = true
 height = 30
 padding-right = 2
@@ -89,7 +89,7 @@ padding-right = 2
 module-margin-right = 2
 module-margin-left = 2
 
-modules-left =
+modules-left = cmus
 modules-center = taskwarrior
 modules-right = mail-count bitcoin filesystem cpu memory updates
 
@@ -102,6 +102,7 @@ font-1 = Noto Color Emoji:size=12:dpi=750
 [module/xwindow]
 type = internal/xwindow
 label = %title%
+label-maxlen = 180
 
 [module/filesystem]
 type = internal/fs
@@ -327,7 +328,7 @@ bar-volume-empty = 
 bar-volume-empty-font = 4
 bar-volume-empty-foreground = ${colors.gray}
 
-click-right = connman-gtk
+click-right = gtk
 
 [module/battery]
 type = internal/battery
@@ -400,7 +401,7 @@ label-close =
 [module/time_paris]
 type = custom/script
 
-exec = TZ="Europe/Paris" date +%H:%M
+exec = TZ="Asia/Kolkata" date +%H:%M
 interval = 10000
 
 label  =  %output%
@@ -465,3 +466,15 @@ interval = 10
 format= <label>
 exec = ~/.config/polybar/modules/taskwarrior.sh %counter%
 
+[module/cmus]
+type = custom/script
+
+exec = ~/.config/polybar/modules/cmus.ex
+exec-if = pgrep -x cmus
+interval = 1
+
+click-left = cmus-remote --pause
+click-right = cmus-remote --stop
+
+format =  🎼 <label>
+label = %output%

@@ -1,8 +1,11 @@
 #!/bin/env sh
 
-TASK_COUNT=`task count status:pending`
-COUNTER=$1
-TASK_ID=$(( ($COUNTER % $TASK_COUNT) + 1))
+TASKS=($(task _ids -movie))
+
+TASK_COUNT=${#TASKS[@]}
+COUNTER=$(($1 % $TASK_COUNT))
+
+TASK_ID="${TASKS[$COUNTER]}"
 
 echo [$TASK_ID] $(task _get $TASK_ID.description)
 
