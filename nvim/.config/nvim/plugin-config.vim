@@ -3,7 +3,7 @@ let ruby_operators = 1
 set encoding=utf8
 
 """ editorconfig
-let g:EditorConfig_core_mode = 'external_command'
+" let g:EditorConfig_core_mode = 'external_command'
 
 
 """ ctrlp config
@@ -24,16 +24,30 @@ let g:indentLine_char = '┆'
 """ neomake configuration
 " Use <leader>e to go to the next error
 "nnoremap <leader>e :call LocationNext()<cr>
-
-
+" if (has("termguicolors"))
+ " set termguicolors
+" endif
+"
 """ deoplete configuration
 let g:deoplete#enable_at_startup = 1
+" let g:deoplete#complete_method = "complete"
+" let g:deoplete#auto_complete_delay = 0
+
 " Improve ultisnips and deoplete integration
-call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#case_insensitive = 1
 let g:deoplete#sources#jedi#show_docstring = 1
+
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
+
+" if !exists('g:deoplete#omni_patterns')
+    " let g:deoplete#omni#input_patterns = {}
+  " endif
+" let g:deoplete#omni#input_patterns.ocaml = '[^. *\t]\.\w*|\s\w*|#'
+
 
 """ NERDCommenter
 " Add spaces after comment delimiters by default
@@ -51,8 +65,6 @@ let NERDTreeMinimalUI = 1
 " Close NERDTree after reading file
 " autocmd BufReadPre,FileReadPre * :NERDTreeClose
 map <silent> <leader>n :NERDTreeFocus<CR>
-" Get colors from color scheme
-" let s:colors = solarized#getColors()
 
 " NERDTree : Toggle and focus if directory
 autocmd StdinReadPre * let s:std_in=1
@@ -67,79 +79,87 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
-" call NERDTreeHighlightFile('md', 'blue', 'none', s:colors.blue.gui, 'none')
-" call nerdtreehighlightfile('yml', 'magenta', 'none', s:colors.purple.gui, 'none')
-" call nerdtreehighlightfile('json', 'yellow', 'none', s:colors.yellow.gui, 'none')
-" call nerdtreehighlightfile('html', 'blue', 'none', s:colors.blue.gui, 'none')
-" call nerdtreehighlightfile('css', 'cyan', 'none', s:colors.cyan.gui, 'none')
-" call nerdtreehighlightfile('scss', 'cyan', 'none', s:colors.cyan.gui, 'none')
-" call nerdtreehighlightfile('coffee', 'yellow', 'none', s:colors.dark_yellow.gui, 'none')
-" call nerdtreehighlightfile('js', 'yellow', 'none', s:colors.yellow.gui, 'none')
-" call nerdtreehighlightfile('rb', 'red', 'none', s:colors.red.gui, 'none')
-"
 
 """ Custom Javascript configuration
 let g:javascript_plugin_jsdoc = 1    " Highlight JSDoc
 
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'elixir': ['credo'],
+\   'rust': ['cargo', 'rls'],
 \   'cpp': ['clang', 'gcc'],
 \}
 
 let g:ale_fixers = {
 \   'python': ['autopep8'],
 \   'javascript': ['prettier_eslint', 'eslint'],
+\   'reason': ['refmt'],
+\   'elixir': ['format'],
+\   'rust': ['rustfmt'],
 \}
 let g:ale_fix_on_save = 1
 
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste'  ],
-      \             [ 'gitbranch', 'neomake', 'readonly', 'filename', 'modified'  ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
-      \   'neomake': 'Neomakelightline',
-      \   'filetype': 'MyFiletype'
-      \ },
-      \ }
+let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/opt/rust/src/'
 
-function! NeomakeLightlineStatus()
-    if !exists('*neomake#statusline#LoclistCounts')
-        return ''
-    endif
-
-    " Count all the errors, warnings
-    let total = 0
-
-    for v in values(neomake#statusline#LoclistCounts())
-        let total += v
-    endfor
-
-    for v in items(neomake#statusline#QflistCounts())
-        let total += v
-    endfor
-
-    if total == 0
-        return ''
-    endif
-
-    return 'line '.getloclist(0)[0].lnum. ', 1 of '.total
-endfunction
-
-function! LocationNext()
-  try
-    lnext
-  catch
-    try | lfirst | catch | endtry
-  endtry
-endfunction
+let g:opamshare = '~/.config/yarn/global/node_modules/reason-cli/3_____________________________/i/esy_ocaml__slash__merlin-3.0.5-bfbe951d/share'
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+nnoremap <silent> <leader><space> :Files<CR>
+nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>q :Windows<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>? :History<CR>
+
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+
 let g:vim_markdown_conceal = 0
 let g:airline_powerline_fonts = 1
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+
+" Gif config
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+" map  / <Plug>(easymotion-sn)
+" omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+" map  n <Plug>(easymotion-next)
+" map  N <Plug>(easymotion-prev)
+
+" filetype plugin on
+" syntax on
+
+
