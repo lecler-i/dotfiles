@@ -9,7 +9,7 @@ floating_modifier $mod
 # Theme
 font xft:FantasqueSansMono 10
 new_window pixel 2
-gaps inner 4
+gaps inner 0
 
                         #border backgr. text    indicator
 client.focused          #458588 #458588 #32302f #ebdbb2
@@ -18,14 +18,6 @@ client.focused_inactive #83a598 #83a598 #32302f #83a598
 client.urgent           #fb4934 #fb4934 #32302f #fb4934
 
 # Keybindings
-bindsym $mod+Return           exec i3-sensible-terminal
-bindsym $mod+d                exec rofi -show run
-bindsym $mod+n                exec networkmanager_dmenu
-bindsym $mod+p                exec rofi-pass
-bindsym $mod+l                exec i3lock.sh
-bindsym $mod+i                exec xcalib -invert -alter
-bindsym $mod+t                exec task-rofi.sh
-
 bindsym $mod+Shift+q          kill
 bindsym $mod+Shift+c          reload
 bindsym $mod+Shift+r          restart
@@ -69,6 +61,7 @@ bindsym $mod+Shift+7          move container to workspace 7
 bindsym $mod+Shift+8          move container to workspace 8
 bindsym $mod+Shift+9          move container to workspace 9
 bindsym $mod+Shift+0          move container to workspace 10
+
 bindsym XF86AudioRaiseVolume  exec --no-startup-id "amixer -q set Master 2%+ unmute && pkill -USR1 py3status"
 bindsym XF86AudioLowerVolume  exec --no-startup-id "amixer -q set Master 2%- && pkill -USR1 py3status"
 bindsym XF86AudioMute         exec --no-startup-id "amixer -q set Master toggle && pkill -USR1 py3status"
@@ -78,11 +71,23 @@ bindsym XF86AudioNext         exec --no-startup-id mpc -q next
 bindsym XF86AudioPrev         exec --no-startup-id mpc -q prev
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
-bindsym Print                 exec scrot -e 'mv $f ~/shots/'
-bindsym $mod+a                [title="^((?!__focused__).)*vim.*$"] focus
-bindsym $mod+z                [class="qutebrowser" title="^.+qutebrowser"] focus
-# move workspace to output left
 
+bindsym Print                 exec scrot -w '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f && rm $f'
+bindsym $mod+a                [title="^.*vim.*$"] focus
+bindsym $mod+z                [class="qutebrowser" title="^.+qutebrowser"] focus
+bindsym $mod+x                [class="Chromium"] focus
+
+bindsym $mod+Return           exec i3-sensible-terminal
+bindsym $mod+d                exec rofi -show run
+bindsym $mod+n                exec networkmanager_dmenu
+bindsym $mod+p                exec rofi-pass
+bindsym $mod+l                exec i3lock.sh
+bindsym $mod+i                exec xcalib -invert -alter
+bindsym $mod+c                exec tmux-rofi.sh
+bindsym $mod+t                exec task-rofi.sh
+
+bindsym $mod+shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 bindsym $mod+r mode "resize"
 mode "resize" {
@@ -95,20 +100,25 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
+for_window [window_role="scratch"] move window to scratchpad
+
 assign [window_role="neomutt"] workspace 8
+assign [window_role="cmus"] workspace 9
 assign [window_role="weechat"] workspace 10
 assign [class="qutebrowser"] workspace 7
 
 for_window  [title="^pinentry$"] floating enable
 
-exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
+exec        --no-startup-id "feh --bg-scale ~/.local/share/wallpaper.png"
 
+exec        --no-startup-id find $XDG_CONFIG_HOME/tmux/enabled -maxdepth 1 -type l -exec sh {} \;
+exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
 exec        --no-startup-id "dunst"
 exec        --no-startup-id "nm-applet"
 exec        --no-startup-id "redshift"
-
 exec        --no-startup-id "qutebrowser"
+exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t cmus' -r cmus"
+exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t scratchpad' -r scratch"
 exec        --no-startup-id "i3-sensible-terminal -e weechat -r weechat"
 exec        --no-startup-id "i3-sensible-terminal -e neomutt -r neomutt"
 exec        "i3-sensible-terminal"
-
