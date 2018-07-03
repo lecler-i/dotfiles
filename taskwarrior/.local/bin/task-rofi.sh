@@ -1,5 +1,5 @@
 #!/bin/sh
-TASK=`task rc.verbose=nothing | rofi -dmenu -p "Task "`
+TASK=`task rc.verbose=nothing -movie | rofi -dmenu -p "Task "`
 
 if [ -z "$TASK" ]; then
     exit 0
