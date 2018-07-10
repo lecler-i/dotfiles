@@ -27,14 +27,8 @@ color dracula
 set t_Co=256
 
 if &term =~ '256color'
-    " disable Background Color Erase (BCE) so that color schemes
-    " render properly when inside 256-color tmux and GNU screen.
-    " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
     set t_ut=
 endif
-
-" let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-" execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 set mouse=a
 set cursorline                  " Highlight the current line
@@ -71,7 +65,7 @@ set undodir=$XDG_CONFIG_HOME/nvim/undo
 set undofile
 set undolevels=1000  "max number of changes that can be undone
 set undoreload=10000 "max number lines to save for undo on buffer reload
-
+set hidden
 " Use old regexp engine
 " This speeds up Ruby syntax highlighting
 set regexpengine=1
@@ -82,7 +76,7 @@ autocmd! filetype *commit*,markdown setlocal textwidth=72  " Looks good
 autocmd! filetype make setlocal noexpandtab                " In Makefiles DO NOT use spaces instead of tabs
 
 autocmd BufWritePre * call TrimWhitespace() " Remove trailing whitespace when saving
-autocmd! BufReadPost * call SetCursorPosition()
+" autocmd! BufReadPost * call SetCursorPosition()
 
 set ff=unix
 
@@ -111,8 +105,7 @@ endfunction
 " Function to set cursor postion
 function! SetCursorPosition()
   " dont do it when writing a commit log entry
-  if &filetype !~ 'svn\|commit\c'
-    if line("'\"") > 0 && line("'\"") <= line("$")
+  if &filetype !~ 'svn\|commit\c' if line("'\"") > 0 && line("'\"") <= line("$")
       exe "normal! g`\""
       normal! zz
     endif
@@ -125,6 +118,30 @@ endfunction
 xnoremap <  <gv
 xnoremap >  >gv
 
+set colorcolumn=81
+
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'VL',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ }
+let g:airline#extensions#wordcount#format = '%d wrds'
+
+if !exists("$TMUX")
+  let g:airline_section_b = airline#section#create(['branch'])
+else
+  let g:airline_section_b = airline#section#create("")
+endif
+
+
+let g:airline_section_z = '%3v:%3l/%L'
 source $XDG_CONFIG_HOME/nvim/plugin-config.vim
 
 " let g:opamshare = substitute(system('opam config var share'),'\n$','','''')

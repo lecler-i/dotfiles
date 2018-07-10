@@ -10,7 +10,6 @@ Plug 'tpope/vim-sleuth'                 " Autodetect file spacing
 Plug 'vim-scripts/autoswap.vim'         " Handle swap files intelligently
 Plug 'sheerun/vim-polyglot'             " Mega language support pack
 Plug 'tpope/vim-fugitive'               " Git wrapper
-Plug 'ctrlpvim/ctrlp.vim'               " ctrlp fuzzy finder
 Plug 'editorconfig/editorconfig-vim'    " .editorconfig support
 Plug 'tpope/vim-surround'               " Change your surroundings
 " Plug 'terryma/vim-multiple-cursors'     " Multiple cursors

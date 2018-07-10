@@ -30,41 +30,38 @@ let g:indentLine_char = '┆'
 "
 """ deoplete configuration
 let g:deoplete#enable_at_startup = 1
-" let g:deoplete#complete_method = "complete"
-" let g:deoplete#auto_complete_delay = 0
+let g:deoplete#complete_method = "complete"
+let g:deoplete#auto_complete_delay = 0
 
 " Improve ultisnips and deoplete integration
 call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#case_insensitive = 1
+
 let g:deoplete#sources#jedi#show_docstring = 1
+
+let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/opt/rust/src/'
 
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
 
-" if !exists('g:deoplete#omni_patterns')
-    " let g:deoplete#omni#input_patterns = {}
-  " endif
-" let g:deoplete#omni#input_patterns.ocaml = '[^. *\t]\.\w*|\s\w*|#'
+" ocaml
+let g:opamshare = '~/.config/yarn/global/node_modules/reason-cli/3_____________________________/i/esy_ocaml__slash__merlin-3.0.5-bfbe951d/share'
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 
 """ NERDCommenter
-" Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
-" Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
 
 
 """ NERDTree
 let NERDTreeIgnore = ['node_modules', 'tmp', 'bower_components']
-" Don't want to see the extra text
 let NERDTreeMinimalUI = 1
-" Close NERDTree after reading file
-" autocmd BufReadPre,FileReadPre * :NERDTreeClose
-map <silent> <leader>n :NERDTreeFocus<CR>
+map <silent> <leader>n :NERDTreeFind<CR>
 
 " NERDTree : Toggle and focus if directory
 autocmd StdinReadPre * let s:std_in=1
@@ -73,8 +70,6 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 " NERDTree : close tree if only left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" NERDTress File highlighting
-"
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
@@ -83,6 +78,7 @@ endfunction
 """ Custom Javascript configuration
 let g:javascript_plugin_jsdoc = 1    " Highlight JSDoc
 
+" ale
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'elixir': ['credo'],
@@ -99,31 +95,22 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 1
 
-let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/opt/rust/src/'
-
-let g:opamshare = '~/.config/yarn/global/node_modules/reason-cli/3_____________________________/i/esy_ocaml__slash__merlin-3.0.5-bfbe951d/share'
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
-imap <c-x><c-k> <plug>(fzf-complete-word)
+" fzf
 imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 
-nnoremap <silent> <leader><space> :Files<CR>
-nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>t :Files<CR>
+nnoremap <silent> <leader>r :Buffers<CR>
 nnoremap <silent> <leader>q :Windows<CR>
 nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>' :Lines<CR>
 nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
-nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>f :History<CR>
 
-
-" Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -139,27 +126,11 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-
 let g:vim_markdown_conceal = 0
-let g:airline_powerline_fonts = 1
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
-" Gif config
+" easymotion
 map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
-
-" map  / <Plug>(easymotion-sn)
-" omap / <Plug>(easymotion-tn)
-
-" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
-" Without these mappings, `n` & `N` works fine. (These mappings just provide
-" different highlight method and have some other features )
-" map  n <Plug>(easymotion-next)
-" map  N <Plug>(easymotion-prev)
-
-" filetype plugin on
-" syntax on
-
-
