@@ -1,33 +1,9 @@
 """ ruby config
 let ruby_operators = 1
-set encoding=utf8
-
-""" editorconfig
-" let g:EditorConfig_core_mode = 'external_command'
-
-
-""" ctrlp config
-let g:ctrlp_map = '<leader>t'
-" Use <leader>f to open MRU files
-nmap <leader>f :CtrlPMRUFiles<cr>
-nmap <leader>r :CtrlPBuffer<cr>
-
-
-" Ignores should be handled by .agignore
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""' " Use silver searcher
-let g:ctrlp_working_path_mode = 0
 
 """ Indent guides
 let g:indentLine_char = '┆'
 
-
-""" neomake configuration
-" Use <leader>e to go to the next error
-"nnoremap <leader>e :call LocationNext()<cr>
-" if (has("termguicolors"))
- " set termguicolors
-" endif
-"
 """ deoplete configuration
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#complete_method = "complete"
@@ -51,12 +27,10 @@ let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
 let g:opamshare = '~/.config/yarn/global/node_modules/reason-cli/3_____________________________/i/esy_ocaml__slash__merlin-3.0.5-bfbe951d/share'
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
-
 """ NERDCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
-
 
 """ NERDTree
 let NERDTreeIgnore = ['node_modules', 'tmp', 'bower_components']
@@ -134,3 +108,29 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
+
+" airline
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'VL',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ }
+
+let g:airline#extensions#wordcount#format = '%d wrds'
+
+" airline sections
+if !exists("$TMUX")
+  let g:airline_section_b = airline#section#create(['branch'])
+else
+  let g:airline_section_b = airline#section#create("")
+endif
+
+let g:airline_section_z = '%3v:%3l/%L'
+

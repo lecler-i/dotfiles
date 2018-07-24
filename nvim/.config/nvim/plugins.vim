@@ -6,23 +6,29 @@ call plug#begin()
 Plug 'tpope/vim-sensible'               " Some sensible settings
 Plug 'tpope/vim-sleuth'                 " Autodetect file spacing
 
-" Plug 'vim-scripts/auto-pairs-gentle'    " Add brackets automatically
+Plug 'dracula/vim'
+
 Plug 'vim-scripts/autoswap.vim'         " Handle swap files intelligently
 Plug 'sheerun/vim-polyglot'             " Mega language support pack
 Plug 'tpope/vim-fugitive'               " Git wrapper
 Plug 'editorconfig/editorconfig-vim'    " .editorconfig support
-Plug 'tpope/vim-surround'               " Change your surroundings
-" Plug 'terryma/vim-multiple-cursors'     " Multiple cursors
-" Plug 'Yggdroot/indentLine'              " Indent guides
+Plug 'vim-scripts/SyntaxComplete'
+Plug 'airblade/vim-gitgutter'
+
+Plug 'ervandew/supertab'
 Plug 'easymotion/vim-easymotion'        " Navigate files with ease
+
 Plug 'scrooloose/nerdtree'              " File tree view
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdcommenter'         " For commenting keybinding
 
 Plug 'junegunn/fzf.vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'w0rp/ale'
+Plug 'SirVer/ultisnips'                 " Snippets engine
+Plug 'honza/vim-snippets'               " Snippets
 
 " Ocaml / Reason
 Plug 'reasonml-editor/vim-reason-plus'
@@ -47,33 +53,14 @@ Plug 'othree/yajs.vim'
 " Rust
 Plug 'sebastianmarkow/deoplete-rust'
 
-Plug 'ervandew/supertab'
 Plug 'shougo/echodoc.vim'
-
-Plug 'scrooloose/nerdcommenter'         " For commenting keybinding
 
 Plug 'bling/vim-airline'                " Airline bar
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-
-Plug 'SirVer/ultisnips'                 " Snippets engine
-Plug 'honza/vim-snippets'               " Snippets
 
 Plug 'suan/vim-instant-markdown', {'do': 'npm install -g instant-markdown-d'}
+
 Plug 'DanManN/vim-razer'
-" Plug 'alvan/vim-closetag'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-Plug 'dracula/vim'
-" Plug 'mhartington/oceanic-next'
-Plug  'wakatime/vim-wakatime'
-
-" Plug 'jelera/vim-javascript-syntax'
-" Plug 'pangloss/vim-javascript'
-" Plug 'jelera/vim-javascript-syntax'
-" Plug 'mxw/vim-jsx'
-
-Plug 'vim-scripts/SyntaxComplete'
-" Plug 'othree/es.next.syntax.vim'
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
