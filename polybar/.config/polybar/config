@@ -89,7 +89,7 @@ padding-right = 2
 module-margin-right = 2
 module-margin-left = 2
 
-modules-left = cmus
+modules-left =
 modules-center = taskwarrior
 modules-right = mail-count bitcoin filesystem cpu memory updates
 
@@ -102,7 +102,7 @@ font-1 = Noto Color Emoji:size=12:dpi=750
 [module/xwindow]
 type = internal/xwindow
 label = %title%
-label-maxlen = 180
+label-maxlen = 100
 
 [module/filesystem]
 type = internal/fs
