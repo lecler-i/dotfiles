@@ -1,24 +1,24 @@
-clear Lock
+! clear Lock
 
 ! disable escape
-keycode 9 = NoSymbol
+! keycode 9 = NoSymbol
 
 ! set caplock to escape
-keycode 66 = Escape Caps_Lock Escape
+! keycode 66 = Escape Caps_Lock Escape
 
 ! Alt right to ModeSwith, ALT_R with shift
-keycode 108 = Mode_switch Alt_R
-
-keycode 24 = q Q 1 exclam
-keycode 25 = w W 2 at
-keycode 26 = e E 3 numbersign
-keycode 27 = r R 4 dollar
-keycode 28 = t T 5 percent
-keycode 29 = y Y 6 asciicircum
-keycode 30 = u U 7 ampersand
-keycode 31 = i I 8 asterisk
-keycode 32 = o O 9 parenleft
-keycode 33 = p P 0 parenright
-
-
-
+! keycode 108 = Mode_switch Alt_R
+!
+! keycode 24 = q Q 1 exclam
+! keycode 25 = w W 2 at
+! keycode 26 = e E 3 numbersign
+! keycode 27 = r R 4 dollar
+! keycode 28 = t T 5 percent
+! keycode 29 = y Y 6 asciicircum
+! keycode 30 = u U 7 ampersand
+! keycode 31 = i I 8 asterisk
+! keycode 32 = o O 9 parenleft
+! keycode 33 = p P 0 parenright
+!
+!
+!

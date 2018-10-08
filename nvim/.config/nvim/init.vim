@@ -23,8 +23,9 @@ endif
 
 " Colorscheme
 syntax enable
-color dracula
 set t_Co=256
+color dracula
+" colorscheme nova
 
 if &term =~ '256color'
     set t_ut=

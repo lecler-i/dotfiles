@@ -7,6 +7,7 @@ Plug 'tpope/vim-sensible'               " Some sensible settings
 Plug 'tpope/vim-sleuth'                 " Autodetect file spacing
 
 Plug 'dracula/vim'
+Plug 'trevordmiller/nova-vim'
 
 Plug 'vim-scripts/autoswap.vim'         " Handle swap files intelligently
 Plug 'sheerun/vim-polyglot'             " Mega language support pack
@@ -27,15 +28,19 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'w0rp/ale'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+\ }
 Plug 'SirVer/ultisnips'                 " Snippets engine
 Plug 'honza/vim-snippets'               " Snippets
 
 " Ocaml / Reason
 Plug 'reasonml-editor/vim-reason-plus'
-Plug 'copy/deoplete-ocaml'
+" Plug 'copy/deoplete-ocaml'
 
 " python
-Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-jedi'
 
 " C/C++
 Plug 'rip-rip/clang_complete'

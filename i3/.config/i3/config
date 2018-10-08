@@ -109,10 +109,12 @@ assign [class="qutebrowser"] workspace 7
 
 for_window  [title="^pinentry$"] floating enable
 
+exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
+exec        "xmodmap ~/.Xmodmap"
+
 exec        --no-startup-id "feh --bg-scale ~/.local/share/wallpaper.png"
 
 exec        --no-startup-id find $XDG_CONFIG_HOME/tmux/enabled -maxdepth 1 -type l -exec sh {} \;
-exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
 exec        --no-startup-id "dunst"
 exec        --no-startup-id "nm-applet"
 exec        --no-startup-id "redshift"

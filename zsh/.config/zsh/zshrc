@@ -25,8 +25,6 @@ export PATH=$PATH:$ANDROID_NDK
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
-export PATH=$PATH:`yarn global bin --offline`
-export PATH=$PATH:/home/ghjkl/.opam/system/bin
 
 export EDITOR=nvim
 
@@ -80,3 +78,5 @@ source <(gopass completion zsh)
  . /home/ghjkl/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

@@ -24,10 +24,18 @@ let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
 
 " ocaml
-let g:opamshare = '~/.config/yarn/global/node_modules/reason-cli/3_____________________________/i/esy_ocaml__slash__merlin-3.0.5-bfbe951d/share'
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" let g:opamshare = '/usr/lib/node_modules/reason-cli/3____________________________________________________/i/esy_ocaml__slash__merlin-3.0.5005-4f9a1302/share'
+" execute "set rtp+=" . g:opamshare . "/merlin/vim"
+"
+let g:LanguageClient_serverCommands = {
+  \ 'reason': ['/usr/bin/reason-language-server'],
+  \ 'ocaml': ['/usr/bin/ocaml-language-server'],
+  \ 'python': ['pyls'],
+\ }
 
-""" NERDCommenter
+" """ NERDCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
@@ -58,16 +66,25 @@ let g:ale_linters = {
 \   'elixir': ['credo'],
 \   'rust': ['cargo', 'rls'],
 \   'cpp': ['clang', 'gcc'],
+\   'reason': ['ols'],
 \}
 
 let g:ale_fixers = {
 \   'python': ['autopep8'],
 \   'javascript': ['prettier_eslint', 'eslint'],
-\   'reason': ['refmt'],
 \   'elixir': ['format'],
+\   'reason': ['refmt'],
 \   'rust': ['rustfmt'],
 \}
 let g:ale_fix_on_save = 1
+" \   'reason': ['refmt'],
+
+let g:ale_reason_ols_executable = '/tmp/reason-language-server/reason-language-server.exe'
+" let g:LanguageClient_serverCommands = {
+    " \ 'reason': ['/tmp/reason-language-server/reason-language-server.exe'],
+    " \ }
+
+nmap <silent> <leader>- <Plug>(ale_next_wrap)
 
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -80,7 +97,7 @@ nnoremap <silent> <leader>t :Files<CR>
 nnoremap <silent> <leader>r :Buffers<CR>
 nnoremap <silent> <leader>q :Windows<CR>
 nnoremap <silent> <leader>; :BLines<CR>
-nnoremap <silent> <leader>' :Lines<CR>
+nnoremap <silent> <leader>' :Ag<CR>
 nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>f :History<CR>
