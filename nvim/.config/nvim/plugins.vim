@@ -63,9 +63,9 @@ Plug 'shougo/echodoc.vim'
 Plug 'bling/vim-airline'                " Airline bar
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'suan/vim-instant-markdown', {'do': 'npm install -g instant-markdown-d'}
-
 Plug 'DanManN/vim-razer'
 "Plug 'wakatime/vim-wakatime'
+
+Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
