@@ -1,30 +1,31 @@
 source $XDG_CONFIG_HOME/zsh/antigen.zsh
 
 antigen bundle mafredri/zsh-async
-antigen bundle intelfx/pure
+antigen bundle sindresorhus/pure
+# antigen bundle intelfx/pure
 antigen bundle wting/autojump
 antigen bundle j-arnaiz/common-aliases
 
 antigen apply
 
-source $HOME/.antigen/bundles/wting/autojump/bin/autojump.zsh
+# source $HOME/.antigen/bundles/wting/autojump/bin/autojump.zsh
 
-alias ls="exa"
+# alias ls="exa"
 alias sxiv="sxiv -a"
 
 export BROWSER=/usr/bin/qutebrowser
-export GOPATH=$HOME/.go
-export ANDROID_HOME=/opt/android-sdk
-export ANDROID_SDK_ROOT=$ANDROID_HOME
+# export GOPATH=$HOME/.go
+# export ANDROID_HOME=/opt/android-sdk
+# export ANDROID_SDK_ROOT=$ANDROID_HOME
 
-export OPENFAAS_URL=https://gateway.openfaas.rancher.thomas.sh/
+# export OPENFAAS_URL=https://gateway.openfaas.rancher.thomas.sh/
 
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools
-export PATH=$PATH:$ANDROID_NDK
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
-export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
+# export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+# export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+# export PATH=$PATH:$ANDROID_NDK
+# export PATH=$PATH:$GOPATH/bin
+# export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
+# export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 
 export EDITOR=nvim
 
@@ -70,13 +71,9 @@ bindkey -v # You can't stop here, you're in Vim country!...
 bindkey '^R' history-incremental-search-backward
 bindkey '^x^e' edit-command-line
 
-# source /usr/share/autojump/autojump.zsh
+# source <(gopass completion zsh)
 
-
-source <(gopass completion zsh)
-
- . /home/ghjkl/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+. /home/ghjkl/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

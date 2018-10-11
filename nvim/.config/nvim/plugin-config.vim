@@ -1,8 +1,7 @@
 """ ruby config
-let ruby_operators = 1
+" let ruby_operators = 1
 
 """ Indent guides
-let g:indentLine_char = '┆'
 
 """ deoplete configuration
 let g:deoplete#enable_at_startup = 1
@@ -11,30 +10,47 @@ let g:deoplete#auto_complete_delay = 0
 
 " Improve ultisnips and deoplete integration
 call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
-let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#case_insensitive = 1
-
-let g:deoplete#sources#jedi#show_docstring = 1
-
-let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/opt/rust/src/'
 
 let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
+" let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
 
 " ocaml
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
-" let g:opamshare = '/usr/lib/node_modules/reason-cli/3____________________________________________________/i/esy_ocaml__slash__merlin-3.0.5005-4f9a1302/share'
-" execute "set rtp+=" . g:opamshare . "/merlin/vim"
 "
 let g:LanguageClient_serverCommands = {
-  \ 'reason': ['/usr/bin/reason-language-server'],
-  \ 'ocaml': ['/usr/bin/ocaml-language-server'],
+  \ 'reason': ['reason-language-server'],
+  \ 'ocaml': ['ocaml-language-server'],
+  \ 'sh': ['bash-language-server', 'start'],
   \ 'python': ['pyls'],
 \ }
 
+" {
+        " 1: {
+            " "name": "Error",
+            " "texthl": "ALEError",
+            " "signText": ">> ✖",
+            " "signTexthl": "ALEErrorSign",
+        " },
+        " 2: {
+            " "name": "Warning",
+            " "texthl": "ALEWarning",
+            " "signText": "-- ⚠",
+            " "signTexthl": "ALEWarningSign",
+        " },
+        " 3: {
+            " "name": "Information",
+            " "texthl": "ALEInfo",
+            " "signText": "ℹ",
+            " "signTexthl": "ALEInfoSign",
+        " },
+        " 4: {
+            " "name": "Hint",
+            " "texthl": "ALEInfo",
+            " "signText": "➤",
+            " "signTexthl": "ALEInfoSign",
+        " },
+    " }
 " """ NERDCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -57,17 +73,8 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
-""" Custom Javascript configuration
-let g:javascript_plugin_jsdoc = 1    " Highlight JSDoc
-
-" ale
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'elixir': ['credo'],
-\   'rust': ['cargo', 'rls'],
-\   'cpp': ['clang', 'gcc'],
-\   'reason': ['ols'],
-\}
+" ale disable linter
+let g:ale_linters = {}
 
 let g:ale_fixers = {
 \   'python': ['autopep8'],
@@ -77,18 +84,8 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \}
 let g:ale_fix_on_save = 1
-" \   'reason': ['refmt'],
-
-let g:ale_reason_ols_executable = '/tmp/reason-language-server/reason-language-server.exe'
-" let g:LanguageClient_serverCommands = {
-    " \ 'reason': ['/tmp/reason-language-server/reason-language-server.exe'],
-    " \ }
 
 nmap <silent> <leader>- <Plug>(ale_next_wrap)
-
-function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
 
 " fzf
 imap <c-x><c-f> <plug>(fzf-complete-path)
@@ -117,7 +114,6 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-let g:vim_markdown_conceal = 0
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
 " easymotion

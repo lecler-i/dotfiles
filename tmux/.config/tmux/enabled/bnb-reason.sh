@@ -1,1 +1,0 @@
-../bnb-reason.sh

@@ -8,19 +8,19 @@ floating_modifier $mod
 
 # Theme
 font xft:FantasqueSansMono 10
-new_window pixel 2
-gaps inner 0
-
+default_border pixel 1
+hide_edge_borders smart
                         #border backgr. text    indicator
-client.focused          #458588 #458588 #32302f #ebdbb2
-client.unfocused        #83a598 #83a598 #32302f #83a598
-client.focused_inactive #83a598 #83a598 #32302f #83a598
+client.focused          #ff0000 #ff0000 #32302f #ff9900
+client.unfocused        #83a598 #000000 #32302f #ccffff
+client.focused_inactive #83a598 #83a598 #32302f #ccffff
 client.urgent           #fb4934 #fb4934 #32302f #fb4934
 
 # Keybindings
 bindsym $mod+Shift+q          kill
 bindsym $mod+Shift+c          reload
 bindsym $mod+Shift+r          restart
+bindsym $mod+grave            exec $HOME/.config/polybar/toggle.sh
 
 bindsym $mod+j                focus left
 bindsym $mod+$left            focus left
@@ -114,7 +114,7 @@ exec        "xmodmap ~/.Xmodmap"
 
 exec        --no-startup-id "feh --bg-scale ~/.local/share/wallpaper.png"
 
-exec        --no-startup-id find $XDG_CONFIG_HOME/tmux/enabled -maxdepth 1 -type l -exec sh {} \;
+# exec        --no-startup-id find $XDG_CONFIG_HOME/tmux/enabled -maxdepth 1 -type l -exec sh {} \;
 exec        --no-startup-id "dunst"
 exec        --no-startup-id "nm-applet"
 exec        --no-startup-id "redshift"

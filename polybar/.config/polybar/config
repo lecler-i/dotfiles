@@ -14,7 +14,6 @@ bg-alt = ${xrdb:color7}
 bg-alrt = ${xrdb:color6}
 bg-unf = ${xrdb:color8}
 
-
 white = #d1d1d1
 gray = #585858
 black = #ce1d1d1d
@@ -24,7 +23,7 @@ yellow = #c7ae95
 green = #aec795
 
 [bar/top]
-monitor = ${env:MONITOR:eDP1}
+monitor = ${env:MONITOR:eDP-1}
 
 bottom = false
 dock = false
@@ -79,7 +78,8 @@ tray-padding = 0
 tray-scale = 1.0
 
 [bar/bot]
-monitor = ${env:MONITOR:eDP1}
+monitor = ${env:MONITOR:eDP-1}
+enabled = false
 bottom = true
 enable-ipc = true
 fixed-center = true
@@ -91,7 +91,7 @@ module-margin-left = 2
 
 modules-left =
 modules-center = taskwarrior
-modules-right = mail-count bitcoin filesystem cpu memory updates
+modules-right = mail-count filesystem cpu memory
 
 background = ${colors.bg}
 foreground = ${colors.fg}
@@ -261,7 +261,7 @@ bar-used-empty-foreground = #444444
 
 [module/wlan]
 type = internal/network
-interface = wlp1s0
+interface = wlan0
 interval = 3.0
 
 format-connected-padding = 1

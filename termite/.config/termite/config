@@ -1,5 +1,6 @@
 [options]
-font = FantasqueSansMono Nerd Font 11
+font = FantasqueSansMono Nerd Font 14
+/* font = TerminessTTF Nerd Font Mono 14 */
 
 clickable_url = true
 cursor_blink  = on

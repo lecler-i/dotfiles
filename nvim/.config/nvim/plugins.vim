@@ -52,8 +52,8 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'slashmili/alchemist.vim'
 
 " Javascript
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'othree/yajs.vim'
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+"Plug 'othree/yajs.vim'
 
 " Rust
 Plug 'sebastianmarkow/deoplete-rust'
@@ -66,6 +66,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'suan/vim-instant-markdown', {'do': 'npm install -g instant-markdown-d'}
 
 Plug 'DanManN/vim-razer'
-Plug 'wakatime/vim-wakatime'
+"Plug 'wakatime/vim-wakatime'
 
 call plug#end()

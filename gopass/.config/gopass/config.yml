@@ -1,13 +1,18 @@
 root:
   askformore: true
+  autoclip: false
   autoimport: true
   autosync: false
+  check_recipient_hash: false
   cliptimeout: 45
+  concurrency: 1
+  editrecipients: false
+  nocolor: false
   noconfirm: false
   nopager: false
-  path: /home/ghjkl/.password-store
+  notifications: false
+  path: gpgcli-gitcli-fs+file:///home/ghjkl/.password-store
+  recipient_hash: {}
   safecontent: false
   usesymbols: false
-  nocolor: false
 mounts: {}
-version: 1.6.1

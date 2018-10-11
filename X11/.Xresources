@@ -1,31 +1,3 @@
-! rofi
-rofi.color-enabled: true
-!                  bg        border    sep
-rofi.color-window: S_base03, S_base1 , S_base1
-!                  bg        fg        bgalt     hlbg      hlfg
-rofi.color-normal: S_base03, S_base0 , S_base03, S_blue  , S_base2
-rofi.color-active: S_base03, S_yellow, S_base03, S_yellow, S_base2
-rofi.color-urgent: S_base03, S_red   , S_base03, S_red   , S_base2
-
-rofi.font:    monospace 12
-rofi.opacity: 90
-
-urxvt.termName: rxvt-unicode
-urxvt.scrollBar: false
-!! Font prefferenes
-urxvt.font: xft:FantasqueSansMono Nerd Font:pixelsize=16
-!! Larger history limit
-urxvt.saveLines: 1000000
-
-!! Perl extensions
-urxvt.perl-ext-common: default,matcher,font-size
-!! Open urls in browser with Control-Click
-urxvt.urlLauncher: /usr/bin/qutebrowser
-!! Change font size on Control-Plus/Minus
-URxvt.keysym.Control-0x2b: perl:font-size:increase
-URxvt.keysym.Control-0x2d: perl:font-size:decrease
-
-
 *.foreground: #F8F8F2
 *.background: #282A36
 *.color0:     #000000

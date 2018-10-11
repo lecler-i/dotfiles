@@ -1,0 +1,7 @@
+[Service]
+Type=oneshot
+RemainAfterExit=true
+StandardOutput=journal
+ExecStart=/bin/bash $XDG_CONFIG_HOME/tmux/launch.sh
+[Install]
+WantedBy=default.target
