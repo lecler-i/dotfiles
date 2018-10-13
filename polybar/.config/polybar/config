@@ -23,7 +23,7 @@ yellow = #c7ae95
 green = #aec795
 
 [bar/top]
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:eDP1}
 
 bottom = false
 dock = false
@@ -78,7 +78,7 @@ tray-padding = 0
 tray-scale = 1.0
 
 [bar/bot]
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:eDP1}
 enabled = false
 bottom = true
 enable-ipc = true
