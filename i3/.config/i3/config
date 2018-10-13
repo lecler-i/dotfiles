@@ -79,7 +79,7 @@ bindsym $mod+x                [class="Chromium"] focus
 
 bindsym $mod+Return           exec i3-sensible-terminal
 bindsym $mod+d                exec rofi -show run
-bindsym $mod+n                exec networkmanager_dmenu
+bindsym $mod+n                exec connman_dmenu
 bindsym $mod+p                exec rofi-pass
 bindsym $mod+l                exec i3lock.sh
 bindsym $mod+i                exec xcalib -invert -alter
