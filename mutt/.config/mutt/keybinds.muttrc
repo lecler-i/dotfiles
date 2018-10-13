@@ -53,8 +53,8 @@ bind  generic        tt  tag-entry
 bind  index          tat tag-thread
 bind  pager          tt  tag-message
 macro pager          tat "<exit><mark-message>q<enter><tag-thread>'q<display-message>"    "tag-thread"
-macro index,pager    gx  "<pipe-message>extract_url | urlview<Enter>"                                   "call urlview to extract URLs out of a message"
-macro attach,compose gx  "<pipe-entry>extract_url | urlview<Enter>"                                     "call urlview to extract URLs out of a message"
+macro index,pager    gx  "<pipe-message>urlscan<Enter>"                                   "call urlview to extract URLs out of a message"
+macro attach,compose gx  "<pipe-entry>urlscan<Enter>"                                     "call urlview to extract URLs out of a message"
 
 # Command Line
 # ----------------------------------------------------
