@@ -6,14 +6,6 @@ margin-bottom = 100
 
 
 [colors]
-/* fg = ${xrdb:color15} */
-fg = #aaa
-modfg = ${xrdb:color1}
-bg = ${xrdb:color0}
-bg-alt = ${xrdb:color7}
-bg-alrt = ${xrdb:color6}
-bg-unf = ${xrdb:color8}
-
 white = #d1d1d1
 gray = #585858
 black = #ce1d1d1d
@@ -22,31 +14,40 @@ blue = #95aec7
 yellow = #c7ae95
 green = #aec795
 
+fg = ${colors.white}
+modfg = ${xrdb:color1}
+bg = ${colors.black}
+bg-alt = ${xrdb:color7}
+bg-alrt = ${xrdb:color6}
+bg-unf = ${xrdb:color8}
+
 [bar/top]
 monitor = ${env:MONITOR:eDP1}
 
 bottom = false
-dock = false
-wm-restack = i3
+/* dock = false */
+/* wm-restack = i3 */
+override-redirect = false
 
 fixed-center = true
-height = 30
+height = 11
 
 module-margin-right = 1
 module-margin-left = 1
 padding-right = 2
 
 modules-left = i3 xwindow
-modules-center =
-modules-right = vpnoff vpncheck wlan volume backlight time_paris date battery menu0
+modules-center = mpd
+modules-right = vpn wlan volume backlight kdeconnect date battery
+/* modules-right = volume backlight date battery */
 
 background = ${colors.bg}
 foreground = ${colors.fg}
 
-font-0 = FantasqueSansMono Nerd Font:size=10
-font-1 = Noto Color Emoji:size=12:dpi=750
-; font-0 = FantasqueSansMono Nerd Font Mono:size=10:dpi=750
-
+font-0 = monospace:size=8;2
+font-1 = Noto Color Emoji:size=6:dpi=1250;1
+font-2 = Font Awesome 5 Free:size=6
+font-3 =  icons\-in\-terminal:size=8;2
 tray-position = right
 
 ; If true, the bar will not shift its
@@ -169,52 +170,65 @@ label-urgent-padding = 2
 [module/mpd]
 type = internal/mpd
 
-format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next>
-; format-online = <icon-pause> <icon-play>  <label-song>
-format-offline = <label-offline>
 
-label-offline =   mpd is offline
-label-offline-foreground = ${colors.bg}
+; Available tags:
+;   <label-song> (default)
+;   <label-time>
+;   <bar-progress>
+;   <toggle> - gets replaced with <icon-(pause|play)>
+;   <toggle-stop> - gets replaced with <icon-(stop|play)>
+;   <icon-random>
+;   <icon-repeat>
+;   <icon-repeatone> (deprecated)
+;   <icon-single> - Toggle playing only a single song. Replaces <icon-repeatone>
+;   <icon-consume>
+;   <icon-prev>
+;   <icon-stop>
+;   <icon-play>
+;   <icon-pause>
+;   <icon-next>
+;   <icon-seekb>
+;   <icon-seekf>
+format-online = <icon-prev> <toggle> <icon-next> <label-time><label-song>
 
-label-song = %artist% - %title%
-label-song-maxlen = 95
-label-song-ellipsis = true
-;abel-song-background = ${colors.black}
-; label-song-padding = 0
+; Available tags:
+;   <label-offline>
+;format-offline = <label-offline>
 
+; Available tokens:
+;   %artist%
+;   %album-artist%
+;   %album%
+;   %date%
+;   %title%
+; Default: %artist% - %title%
+label-song = 𝄞 %title% - %artist%
+label-song-maxlen = 50
 
-icon-prev = %{T4}
-icon-seekb = <<
-icon-stop = o
-icon-pause = %{T4}
-icon-play = %{T4}
-icon-next = %{T4}
-icon-seekf = >>
+; Available tokens:
+;   %elapsed%
+;   %total%
+; Default: %elapsed% / %total%
+;label-time = %elapsed% / %total%
 
-icon-random = S
-icon-repeat = R
+; Available tokens:
+;   None
+label-offline = 🎜 mpd is offline
 
-toggle-on-foreground = #e60053
-toggle-off-foreground = #66
+; Only applies if <icon-X> is used
+icon-play = 
+icon-pause = 
+icon-prev = 
+icon-next =  
 
+toggle-on-foreground = #ff
+toggle-off-foreground = #55
 
 [module/backlight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = │
-bar-indicator-foreground = #ff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = #55
-
+format =  <label>
+label = %percentage%%
 
 [module/cpu]
 format-label = internal/cpu
@@ -261,18 +275,41 @@ bar-used-empty-foreground = #444444
 
 [module/wlan]
 type = internal/network
-interface = wlan0
-interval = 3.0
+interface = wlp1s0
+interval = 2.0
 
+format-connected = "  <label-connected> "
+format-packetloss = <animation-packetloss>
+label-connected = %essid% %signal%% %upspeed:2% %downspeed:2%
+;label-connected = %signal%%
+
+ramp-signal-0 = 
+ramp-signal-0-foreground = #F03051
+ramp-signal-1 = 
+ramp-signal-1-foreground = #F07127
+ramp-signal-2 = 
+ramp-signal-2-foreground = #F9CE56
+ramp-signal-3 = 
+ramp-signal-3-foreground = ${colors.purple}
+ramp-signal-4 = 
+ramp-signal-4-foreground = ${colors.purple}
+ramp-signal-5 = 
+ramp-signal-5-foreground = ${colors.purple}
+
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = #000000
+animation-packetloss-framerate = 500
 format-connected-padding = 1
 format-disconnected-padding = 1
 
-format-connected = <label-connected>
-
-label-connected =   %essid%
-label-disconnected = 
-label-disconnected-foreground = ${colors.gray}
-
+/* format-connected = <label-connected> */
+/*  */
+/* label-connected =   %essid% */
+/* label-disconnected =  */
+/* label-disconnected-foreground = ${colors.gray} */
+/*  */
 
 [module/eth]
 type = internal/network
@@ -301,34 +338,17 @@ format-background = ${colors.bg}
 click-right = gsimplecal
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 
-format-volume = <bar-volume>
+format-volume = <label-volume>
 
-label-volume = VOL
+label-volume =    %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted =  sound muted
+label-muted =  M
 label-muted-foreground = ${colors.gray}
 
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.green}
-bar-volume-foreground-1 = ${colors.green}
-bar-volume-foreground-2 = ${colors.green}
-bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.yellow}
-bar-volume-foreground-5 = ${colors.red}
-bar-volume-gradient = false
-bar-volume-indicator = 
-bar-volume-indicator-font = 4
-bar-volume-indicator-foreground = ${colors.white}
-bar-volume-fill = 
-bar-volume-fill-font = 4
-bar-volume-empty = 
-bar-volume-empty-font = 4
-bar-volume-empty-foreground = ${colors.gray}
-
-click-right = gtk
+click-right = pavucontrol
 
 [module/battery]
 type = internal/battery
@@ -379,33 +399,6 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = #55
 
-
-[module/menu0]
-type = custom/menu
-
-format = <label-toggle> <menu>
-;format-underline = ${colors.white}
-
-;format-background = ${colors.black}
-
-menu-0-0 =  shutdown
-menu-0-0-exec = shutdown now
-menu-0-1 =  restart
-menu-0-1-exec = shutdown -r now
-menu-0-2 =  cancel
-
-
-label-open = 
-label-close =
-
-[module/time_paris]
-type = custom/script
-
-exec = TZ="Europe/Paris" date +%H:%M
-interval = 10000
-
-label  =  %output%
-
 [module/updates]
 type = custom/script
 
@@ -432,25 +425,10 @@ tail = true
 format-prefix-foreground = ${colors.fg}
 exec = ~/.config/polybar/modules/bitcoin.py
 
-[module/vpncheck]
+[module/vpn]
 type = custom/script
-interval = 30
-format= <label>
-format-underline = #268bd2
-format-prefix = "  "
-format-prefix-foreground = #0a0
-exec-if = nmcli c show  --active | grep -E '(vpn|tun)'
-exec = ~/.config/polybar/modules/vpn-infos.py %counter%
-
-[module/vpnoff]
-type = custom/script
-interval = 30
-format= <label>
-format-underline = #268bd2
-format-prefix = "  "
-format-prefix-foreground = #f00
-exec-if = ! (nmcli c show  --active | grep -E '(vpn|tun)')
-exec = echo 'NO VPN'
+interval = 5
+exec = ~/.config/polybar/modules/vpn-info.sh
 
 
 [module/mail-count]
@@ -466,15 +444,8 @@ interval = 10
 format= <label>
 exec = ~/.config/polybar/modules/taskwarrior.sh %counter%
 
-[module/cmus]
-type = custom/script
-
-exec = ~/.config/polybar/modules/cmus.ex
-exec-if = pgrep -x cmus
-interval = 1
-
-click-left = cmus-remote --pause
-click-right = cmus-remote --stop
-
-format =  🎼 <label>
-label = %output%
+[module/kdeconnect]
+type = custom/script  
+exec = ". ~/.config/polybar/modules/polybar-kdeconnect/polybar-kdeconnect.sh; show_devices"  
+exec-if = "(qdbus --literal org.kde.kdeconnect /modules/kdeconnect org.kde.kdeconnect.daemon.selfId)"
+tail = true
