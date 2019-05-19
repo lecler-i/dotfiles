@@ -12,7 +12,7 @@ default_border pixel 1
 hide_edge_borders smart
                         #border backgr. text    indicator
 client.focused          #ff0000 #ff0000 #32302f #ff9900
-client.unfocused        #83a598 #000000 #32302f #ccffff
+client.unfocused        #83a598 #222222 #32302f #ccffff
 client.focused_inactive #83a598 #83a598 #32302f #ccffff
 client.urgent           #fb4934 #fb4934 #32302f #fb4934
 
@@ -20,7 +20,7 @@ client.urgent           #fb4934 #fb4934 #32302f #fb4934
 bindsym $mod+Shift+q          kill
 bindsym $mod+Shift+c          reload
 bindsym $mod+Shift+r          restart
-bindsym $mod+grave            exec $HOME/.config/polybar/toggle.sh
+bindsym $mod+grave            exec $XDG_CONFIG_HOME/polybar/toggle.sh
 
 bindsym $mod+j                focus left
 bindsym $mod+$left            focus left
@@ -77,9 +77,9 @@ bindsym $mod+a                [title="^.*vim.*$"] focus
 bindsym $mod+z                [class="qutebrowser" title="^.+qutebrowser"] focus
 bindsym $mod+x                [class="Chromium"] focus
 
-bindsym $mod+Return           exec i3-sensible-terminal
+bindsym $mod+Return           exec kitty
 bindsym $mod+d                exec rofi -show run
-bindsym $mod+n                exec connman_dmenu
+bindsym $mod+n                exec networkmanager_dmenu
 bindsym $mod+p                exec rofi-pass
 bindsym $mod+l                exec i3lock.sh
 bindsym $mod+i                exec xcalib -invert -alter
@@ -102,25 +102,19 @@ mode "resize" {
 
 for_window [window_role="scratch"] move window to scratchpad
 
-assign [window_role="neomutt"] workspace 8
-assign [window_role="cmus"] workspace 9
-assign [window_role="weechat"] workspace 10
+assign [instance="neomutt"] workspace 8
+assign [instance="cmus"] workspace 9
+assign [instance="weechat"] workspace 10
 assign [class="qutebrowser"] workspace 7
 
 for_window  [title="^pinentry$"] floating enable
 
 exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
-exec        "xmodmap ~/.Xmodmap"
 
-exec        --no-startup-id "feh --bg-scale ~/.local/share/wallpaper.png"
-
-# exec        --no-startup-id find $XDG_CONFIG_HOME/tmux/enabled -maxdepth 1 -type l -exec sh {} \;
 exec        --no-startup-id "dunst"
-exec        --no-startup-id "nm-applet"
-exec        --no-startup-id "redshift"
 exec        --no-startup-id "qutebrowser"
 exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t cmus' -r cmus"
 exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t scratchpad' -r scratch"
-exec        --no-startup-id "i3-sensible-terminal -e weechat -r weechat"
-exec        --no-startup-id "i3-sensible-terminal -e neomutt -r neomutt"
+exec        --no-startup-id "i3-sensible-terminal --class weechat -e weechat"
+exec        --no-startup-id "i3-sensible-terminal --class neomutt -e neomutt"
 exec        "i3-sensible-terminal"
