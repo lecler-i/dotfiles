@@ -3,6 +3,5 @@
 
 config_version: 2
 settings:
-  content.javascript.enabled:
-    '*://panopticlick.eff.org/*': true
-    global: true
+  tabs.position:
+    global: left

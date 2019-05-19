@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+#
+# Adds DuckDuckGo bang as searchengine.
+#
+# Usage:
+#   :spawn --userscript ripbang [bang]...
+#
+# Example:
+#   :spawn --userscript ripbang amazon maps
+#
+
+from __future__ import print_function
+import os, re, requests, sys
+
+try:
+    from urllib.parse import unquote
+except ImportError:
+    from urllib import unquote
+
+bang = sys.argv[1]
+search = " ".join(sys.argv[2:])
+r = requests.get('https://duckduckgo.com/',
+                 params={'q': "!{} {}".format(bang, search)})
+
+searchengine = re.findall(r"uddg=(.*?)'", r.text)[0]
+
+if os.getenv('QUTE_FIFO'):
+    with open(os.environ['QUTE_FIFO'], 'w') as fifo:
+        fifo.write("open {}".format(unquote(searchengine)))
+else:
+    print('%s %s' % (bang, searchengine))
