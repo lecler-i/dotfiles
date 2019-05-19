@@ -1,5 +1,5 @@
-text/html; w3m -I %{charset} -T text/html; copiousoutput; print=qutebrowser %s > /dev/null; needsterminal;
+text/html; surf -s -i %s ; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal;
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
 
 application/pdf; /usr/bin/zathura %s; print=/usr/bin/acroread %s
-
-image/*; ~/.config/mutt/muttimage.sh %s ; copiousoutput
+image/*; sxiv %s ; copiousoutput

@@ -50,9 +50,14 @@ alias mailbox Thomas LECLERCQ <thomasle@mailbox.org>
 alias gmail Thomas LECLERCQ <degnus@gmail.com>
 alias thomash Thomas LECLERCQ <me@thomas.sh>
 
-set crypt_use_gpgme
-set crypt_replysign
+set crypt_use_gpgme=yes
+set crypt_replysign=yes
 set crypt_replysignencrypted=yes
+set crypt_autosign=yes
+set crypt_verify_sig=yes
+set crypt_replysign=yes
+set crypt_replyencrypt=yes
+set pgp_default_key="46DD1F8DE5E961CE530B991CEF9A5C8ABCF6AC69"
 
 bind editor <Tab> complete-query
 bind editor ^T    complete
