@@ -2,56 +2,71 @@
 " let ruby_operators = 1
 
 """ Indent guides
+set hidden
 
-""" deoplete configuration
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#complete_method = "complete"
-let g:deoplete#auto_complete_delay = 0
+let g:grammarous#languagetool_cmd = 'languagetool'
 
-" Improve ultisnips and deoplete integration
-call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
+nmap <leader>g <Plug>(grammarous-move-to-info-window)	
+let g:UltiSnipsExpandTrigger=""
 
-let g:deoplete#ignore_sources = {}
-" let g:deoplete#ignore_sources.ocaml = ['buffer', 'around', 'member', 'tag']
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
-" ocaml
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <leader>rn <Plug>(coc-rename)
+
+nnoremap <silent> <leader>S  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>s  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
+
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+map <silent> <leader>n :NERDTreeFind<CR>
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
-"
-let g:LanguageClient_serverCommands = {
-  \ 'reason': ['reason-language-server'],
-  \ 'ocaml': ['ocaml-language-server'],
-  \ 'sh': ['bash-language-server', 'start'],
-  \ 'python': ['pyls'],
-\ }
 
-" {
-        " 1: {
-            " "name": "Error",
-            " "texthl": "ALEError",
-            " "signText": ">> ✖",
-            " "signTexthl": "ALEErrorSign",
-        " },
-        " 2: {
-            " "name": "Warning",
-            " "texthl": "ALEWarning",
-            " "signText": "-- ⚠",
-            " "signTexthl": "ALEWarningSign",
-        " },
-        " 3: {
-            " "name": "Information",
-            " "texthl": "ALEInfo",
-            " "signText": "ℹ",
-            " "signTexthl": "ALEInfoSign",
-        " },
-        " 4: {
-            " "name": "Hint",
-            " "texthl": "ALEInfo",
-            " "signText": "➤",
-            " "signTexthl": "ALEInfoSign",
-        " },
-    " }
-" """ NERDCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
@@ -78,14 +93,15 @@ let g:ale_linters = {}
 
 let g:ale_fixers = {
 \   'python': ['autopep8'],
+\   'json': ['jq'],
 \   'javascript': ['prettier_eslint', 'eslint'],
 \   'elixir': ['format'],
 \   'reason': ['refmt'],
 \   'rust': ['rustfmt'],
+\   'c': ['clang-format'],
+\   'cpp': ['clang-format'],
 \}
 let g:ale_fix_on_save = 1
-
-nmap <silent> <leader>- <Plug>(ale_next_wrap)
 
 " fzf
 imap <c-x><c-f> <plug>(fzf-complete-path)
@@ -114,7 +130,7 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+" let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
 " easymotion
 map <Leader>l <Plug>(easymotion-lineforward)
@@ -139,11 +155,9 @@ let g:airline_mode_map = {
 let g:airline#extensions#wordcount#format = '%d wrds'
 
 " airline sections
-if !exists("$TMUX")
-  let g:airline_section_b = airline#section#create(['branch'])
-else
-  let g:airline_section_b = airline#section#create("")
-endif
+let g:airline_section_b = airline#section#create(['branch'])
 
 let g:airline_section_z = '%3v:%3l/%L'
 
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'

@@ -1,12 +1,7 @@
 " Install VimPlug if not present
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
-endif
+source $XDG_CONFIG_HOME/nvim/plugins.vim
 
 let mapleader="\<Space>" " Change <leader> to ,
-
-source $XDG_CONFIG_HOME/nvim/plugins.vim
 
 "Use 24-bit (true-color) mode in Vim/Neovim
 if (has("nvim"))
@@ -41,7 +36,7 @@ set showmatch                   " highlight matching braces
 set hlsearch                    " Highlight search
 set ignorecase                  " ignore case while searching
 set smartcase                   " unless uppercase explicitly mentioned
-" set smartindent                 " indent smartly
+set smartindent                 " indent smartly
 " set nowrap                      " Don't wrap text
 " set laststatus=2                " Always show statusbar
 set scrolloff=999                 " Minimum space on bottom/top of window
@@ -76,27 +71,6 @@ autocmd! filetype *commit*,markdown setlocal spell         " Spell Check
 autocmd! filetype *commit*,markdown setlocal textwidth=72  " Looks good
 autocmd! filetype make setlocal noexpandtab                " In Makefiles DO NOT use spaces instead of tabs
 
-" autocmd BufWritePre * call TrimWhitespace() " Remove trailing whitespace when saving
-" autocmd! BufReadPost * call SetCursorPosition()
-
-" function! TrimWhitespace()
-  " let l:save = winsaveview()
-  " %s/\s\+$//e
-  " call winrestview(l:save)
-" endfunction
-
-" Function to set cursor postion
-" function! SetCursorPosition()
-  " dont do it when writing a commit log entry
-  " if &filetype !~ 'svn\|commit\c' if line("'\"") > 0 && line("'\"") <= line("$")
-      " exe "normal! g`\""
-      " normal! zz
-    " endif
-  " else
-    " call cursor(1,1)
-  " endif
-" endfunction
-
 " Move lines up(-) or down(_)
 noremap - ddp
 noremap _ ddkP
@@ -117,4 +91,3 @@ xnoremap <  <gv
 xnoremap >  >gv
 
 source $HOME/.config/nvim/plugin-config.vim
-
