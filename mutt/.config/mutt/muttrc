@@ -1,4 +1,3 @@
-source ~/.config/mutt/accs/thomasle@mailbox.org
 source ~/.config/mutt/dracula-color.muttrc
 source ~/.config/mutt/keybinds.muttrc
 
@@ -49,38 +48,7 @@ set edit_headers
 alias mailbox Thomas LECLERCQ <thomasle@mailbox.org>
 alias gmail Thomas LECLERCQ <degnus@gmail.com>
 alias thomash Thomas LECLERCQ <me@thomas.sh>
+alias evs Thomas LECLERCQ <t.leclercq@evs.com>
 
-set crypt_use_gpgme=yes
-set crypt_replysign=yes
-set crypt_replysignencrypted=yes
-set crypt_autosign=yes
-set crypt_verify_sig=yes
-set crypt_replysign=yes
-set crypt_replyencrypt=yes
-set pgp_default_key="46DD1F8DE5E961CE530B991CEF9A5C8ABCF6AC69"
+source ~/.config/mutt/default-account
 
-bind editor <Tab> complete-query
-bind editor ^T    complete
-
-macro index,pager A \
-    "<pipe-message>khard add-email<return>" \
-    "add the sender email address to khard"
-
-bind index,pager \` modify-labels
-
-bind index,pager x vfolder-from-query
-bind index,pager X change-vfolder
-
-# bind editor <space> noop
-# bind index g noop
-# bind index G last-entry
-# bind index gg first-entry
-# bind index d half-down
-# bind index u half-up
-# bind index D delete-message
-# bind index U undelete-message
-# bind index F search
-# bind index R group-reply
-#
-# macro index X '<sync-mailbox><enter-command>source ~/.config/mutt/accs/degnus@gmail.com<enter><change-folder>!<enter>'
-# macro index K '<sync-mailbox><enter-command>source ~/.config/mutt/cocklirc<enter><change-folder>!<enter>'

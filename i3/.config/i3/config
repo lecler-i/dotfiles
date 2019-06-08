@@ -77,7 +77,7 @@ bindsym $mod+a                [title="^.*vim.*$"] focus
 bindsym $mod+z                [class="qutebrowser" title="^.+qutebrowser"] focus
 bindsym $mod+x                [class="Chromium"] focus
 
-bindsym $mod+Return           exec kitty
+bindsym $mod+Return           exec alacritty
 bindsym $mod+d                exec rofi -show run
 bindsym $mod+n                exec networkmanager_dmenu
 bindsym $mod+p                exec rofi-pass

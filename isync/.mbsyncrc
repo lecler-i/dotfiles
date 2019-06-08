@@ -1,6 +1,6 @@
-#################################
-######## Account mailbox ########
-#################################
+#
+# mailbox account
+# 
 
 IMAPAccount thomasle-mailbox
 Host imap.mailbox.org
@@ -8,52 +8,42 @@ User thomasle@mailbox.org
 PassCmd "pass zxc/mailbox.org/thomasle"
 SSLType IMAPS
 
-# Remote storage
 IMAPStore thomasle-mailbox-remote
 Account thomasle-mailbox
 
-# Local storage
 MaildirStore thomasle-mailbox-local
+SubFolders Legacy
 Path ~/.mails/thomasle@mailbox.org/
-Inbox ~/.mails/thomasle@mailbox.org/inbox
+Inbox ~/.mails/thomasle@mailbox.org/Inbox
 
-Channel thomasle-mailbox-archive
-Master ":thomasle-mailbox-remote:Archive"
-Slave ":thomasle-mailbox-local:archive"
-Create Slave
+Channel thomasle-mailbox
+Master :thomasle-mailbox-remote:
+Slave :thomasle-mailbox-local:
+Patterns *
+Create Both
 SyncState *
-Sync Push Flags
 
-Channel thomasle-mailbox-trash
-Master ":thomasle-mailbox-remote:Trash"
-Slave ":thomasle-mailbox-local:trash"
-Create Slave
-Sync All
+# 
+# Evs Account
+#
 
-Channel thomasle-mailbox-drafts
-Master ":thomasle-mailbox-remote:Drafts"
-Slave ":thomasle-mailbox-local:drafts"
-Create Slave
-Sync All
-Expunge Both
+IMAPAccount tleclercq-evs
+Host outlook.office365.com
+User t.leclercq@evs.com
+PassCmd "pass work/evs.com"
+SSLType IMAPS
 
-Channel thomasle-mailbox-sent
-Master ":thomasle-mailbox-remote:Sent"
-Slave ":thomasle-mailbox-local:sent"
-Create Slave
-Sync All
-Expunge Both
+IMAPStore tleclercq-evs-remote
+Account tleclercq-evs
 
-Channel thomasle-mailbox-inbox
-Master ":thomasle-mailbox-remote:Inbox"
-Slave ":thomasle-mailbox-local:inbox"
-Create Slave
-Sync All
-Expunge Both
+MaildirStore tleclercq-evs-local
+SubFolders Legacy
+Path ~/.mails/t.leclercq@evs.com/
+Inbox ~/.mails/t.leclercq@evs.com/Inbox
 
-Channel thomasle-mailbox-github-notifications
-Master ":thomasle-mailbox-remote:github-notifications"
-Slave ":thomasle-mailbox-local:github-notifications"
-Create Slave
-Sync All
-Expunge Both
+Channel tleclercq-evs
+Master :tleclercq-evs-remote:
+Slave :tleclercq-evs-local:
+Patterns *
+SyncState *
+
