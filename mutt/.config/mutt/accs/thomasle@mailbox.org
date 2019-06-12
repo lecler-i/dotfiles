@@ -1,15 +1,25 @@
 # vim: filetype=muttrc
+unmailboxes *
 
 set folder = "~/.mails/thomasle@mailbox.org/"
-set spoolfile = "+/inbox"
-set postponed = "+/drafts"
-set trash = "+/trash"
-set record = "+/sent"
+set spoolfile = "+/Inbox"
+set postponed = "+/Drafts"
+set trash = "+/Trash"
+set record = "+/Sent"
 
 set sendmail="/usr/bin/msmtp -a thomasle-mailbox"
 set from = "thomasle@mailbox.org"
 set realname = "Thomas LECLERCQ"
 
-set pgp_sign_as=46DD1F8DE5E961CE530B991CEF9A5C8ABCF6AC69
+set crypt_use_gpgme=yes
+set crypt_replysign=yes
+set crypt_replysignencrypted=yes
+set crypt_autosign=yes
+set crypt_verify_sig=yes
+set crypt_replysign=yes
+set crypt_replyencrypt=yes
+set pgp_default_key="0x8668630491A41722"
 
-mailboxes ="inbox" ="sent" ="archive" ="draft" ="github-notifications"
+mailboxes ="Inbox" ="Sent" ="Archive" ="Draft" ="github-notifications"
+
+macro index <f5> "!mbsync -a thomasle-mailbox^M" "Update through mbsync"

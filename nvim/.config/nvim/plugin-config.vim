@@ -98,6 +98,7 @@ let g:ale_fixers = {
 \   'elixir': ['format'],
 \   'reason': ['refmt'],
 \   'rust': ['rustfmt'],
+\   'cs': ['uncrustify'],
 \   'c': ['clang-format'],
 \   'cpp': ['clang-format'],
 \}

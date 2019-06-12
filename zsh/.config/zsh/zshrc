@@ -1,79 +1,46 @@
+fpath=( "$XDG_DATA_HOME/zsh/site-functions" $fpath )
+
+export NVM_LAZY_LOAD=true
+
 source $XDG_CONFIG_HOME/zsh/antigen.zsh
-
 antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
-# antigen bundle intelfx/pure
-antigen bundle wting/autojump
 antigen bundle j-arnaiz/common-aliases
-
+antigen bundle sindresorhus/pure
 antigen apply
 
-# source $HOME/.antigen/bundles/wting/autojump/bin/autojump.zsh
+eval "$(fasd --init auto)"
 
-# alias ls="exa"
 alias sxiv="sxiv -a"
+alias ls="exa"
+alias cat="bat"
+alias ncdu="ncdu --color dark"
+alias x="xdg-open"
 
 export BROWSER=/usr/bin/qutebrowser
-# export GOPATH=$HOME/.go
-# export ANDROID_HOME=/opt/android-sdk
-# export ANDROID_SDK_ROOT=$ANDROID_HOME
-
-# export OPENFAAS_URL=https://gateway.openfaas.rancher.thomas.sh/
-
-# export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-# export PATH=$PATH:$ANDROID_SDK_ROOT/tools
-# export PATH=$PATH:$ANDROID_NDK
-# export PATH=$PATH:$GOPATH/bin
-# export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
-# export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
-
-export EDITOR=nvim
-
-source /usr/share/nvm/init-nvm.sh
-
-if [[ $TERM == xterm-termite ]]; then
-  . /etc/profile.d/vte.sh
-  __vte_osc7
-fi
 
 source $XDG_CONFIG_HOME/zsh/keybinds
 
-# Les features!
-# extended globbing, awesome!
-# setopt extendedGlob
-
-# zmv -  a command for renaming files by means of shell patterns.
-# autoload -U zmv
-#
-# # zargs, as an alternative to find -exec and xargs.
-# autoload -U zargs
-#
 # Control-x-e to open current line in $EDITOR, awesome when writting functions or editing multiline commands.
 autoload -U edit-command-line
 zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
 
 # Ignore duplicate in history.
 setopt hist_ignore_dups
-
-# Prevent record in history entry if preceding them with at least one space
 setopt hist_ignore_space
+setopt noflowcontrol
 
-# Nobody needs flow control anymore.
-# setopt noflowcontrol
-
-HISTFILE=$XDG_CONFIG_HOME/zsh/zsh_history
+# HISTFILE=$XDG_CONFIG_HOME/zsh/zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
 setopt appendhistory autocd beep extendedglob notify
 bindkey -v # You can't stop here, you're in Vim country!...
 
-bindkey '^R' history-incremental-search-backward
-bindkey '^x^e' edit-command-line
+autoload -U promptinit; promptinit
+prompt pure
 
-# source <(gopass completion zsh)
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-. /home/ghjkl/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-
+[ -f "$XDG_CONFIG_HOME"/fzf/fzf.zsh ] && source "$XDG_CONFIG_HOME/fzf/fzf.zsh"
