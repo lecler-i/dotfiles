@@ -1,6 +1,7 @@
-#
-# mailbox account
-# 
+#################################
+######## Account mailbox ########
+#################################
+CopyArrivalDate yes
 
 IMAPAccount thomasle-mailbox
 Host imap.mailbox.org
@@ -8,21 +9,63 @@ User thomasle@mailbox.org
 PassCmd "pass zxc/mailbox.org/thomasle"
 SSLType IMAPS
 
+# Remote storage
 IMAPStore thomasle-mailbox-remote
 Account thomasle-mailbox
 
+# Local storage
 MaildirStore thomasle-mailbox-local
-SubFolders Legacy
 Path ~/.mails/thomasle@mailbox.org/
-Inbox ~/.mails/thomasle@mailbox.org/Inbox
+Inbox ~/.mails/thomasle@mailbox.org/inbox
 
-Channel thomasle-mailbox
-Master :thomasle-mailbox-remote:
-Slave :thomasle-mailbox-local:
-Patterns *
-Create Both
+Channel thomasle-mailbox-inbox
+Master ":thomasle-mailbox-remote:Inbox"
+Slave ":thomasle-mailbox-local:Inbox"
+Create Slave
+Sync All
+Expunge Both
+
+Channel thomasle-mailbox-archive
+Master ":thomasle-mailbox-remote:Archive"
+Slave ":thomasle-mailbox-local:Archive"
+Create Slave
 SyncState *
+Sync Push Flags
 
+Channel thomasle-mailbox-trash
+Master ":thomasle-mailbox-remote:Trash"
+Slave ":thomasle-mailbox-local:Trash"
+Create Slave
+Sync All
+
+Channel thomasle-mailbox-drafts
+Master ":thomasle-mailbox-remote:Drafts"
+Slave ":thomasle-mailbox-local:Drafts"
+Create Slave
+Sync All
+Expunge Both
+
+Channel thomasle-mailbox-sent
+Master ":thomasle-mailbox-remote:Sent"
+Slave ":thomasle-mailbox-local:Sent"
+Create Slave
+Sync All
+Expunge Both
+
+Channel thomasle-mailbox-github-notifications
+Master ":thomasle-mailbox-remote:github-notifications"
+Slave ":thomasle-mailbox-local:github-notifications"
+Create Slave
+Sync All
+Expunge Both
+
+Group thomasle-mailbox
+Channel thomasle-mailbox-inbox
+Channel thomasle-mailbox-archive
+Channel thomasle-mailbox-trash
+Channel thomasle-mailbox-drafts
+Channel thomasle-mailbox-sent
+Channel thomasle-mailbox-github-notifications
 # 
 # Evs Account
 #
@@ -46,4 +89,8 @@ Master :tleclercq-evs-remote:
 Slave :tleclercq-evs-local:
 Patterns *
 SyncState *
+
+Group work
+Channel thomasle-mailbox-remote
+Channel thomasle-mailbox-remote
 

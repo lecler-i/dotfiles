@@ -1,0 +1,29 @@
+urls-source "ttrss"
+ttrss-url "https://ttrss.thomas.sh"
+ttrss-login "admin"
+ttrss-passwordeval "pass zxc/ttrss.thomas.sh"
+ttrss-flag-publish "b"
+ttrss-flag-star "a"
+
+text-width 120
+reload-threads 2
+prepopulate-query-feeds yes
+
+cookie-cache "~/.cache/newsboat/cookies.txt"
+
+bind-key j down 
+bind-key k up 
+bind-key h prev article
+bind-key l next article
+bind-key K prev-feed 
+bind-key J next-feed 
+
+
+color background         default   default
+color listnormal         color8   default
+color listnormal_unread  default   default
+color listfocus          black     yellow
+color listfocus_unread   black     yellow
+color info               magenta   black
+color article            default   default
+

@@ -22,5 +22,7 @@ set pgp_default_key="0x8668630491A41722"
 
 mailboxes ="Inbox" ="Archive" ="Deleted Items" ="git" ="confluence" ="invites" ="Sent Items"
 
-macro index <f5> "!mbsync -a tleclercq-evs^M" "Update through mbsync"
+macro index <f5> "!mbsync tleclercq-evs^M" "Update through mbsync"
+
+alias evs Thomas LECLERCQ <t.leclercq@evs.com>
 
