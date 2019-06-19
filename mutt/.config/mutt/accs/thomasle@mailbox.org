@@ -22,4 +22,4 @@ set pgp_default_key="0x8668630491A41722"
 
 mailboxes ="Inbox" ="Sent" ="Archive" ="Draft" ="github-notifications"
 
-macro index <f5> "!mbsync -a thomasle-mailbox^M" "Update through mbsync"
+macro index <f5> "!mbsync thomasle-mailbox^M" "Update through mbsync"

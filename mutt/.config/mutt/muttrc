@@ -8,6 +8,7 @@ set mail_check = "10"
 set mailcap_path = ~/.config/mutt/mailcap
 set date_format="%m/%d %I:%M"
 set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
+set sleep_time = 0
 
 auto_view text/html
 alternative_order text/plain text/enriched text/html
@@ -36,9 +37,8 @@ set sidebar_visible = yes
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 set mail_check_stats = yes
 set sidebar_sort_method = 'name'
-set sidebar_new_mail_only = no
-set imap_check_subscribed
-
+# set sidebar_new_mail_only = no
+# set imap_check_subscribed
 set nm_default_uri = "notmuch:///home/ghjkl/.mails/
 
 set query_command= "khard email --parsable '%s'"
@@ -48,7 +48,9 @@ set edit_headers
 alias mailbox Thomas LECLERCQ <thomasle@mailbox.org>
 alias gmail Thomas LECLERCQ <degnus@gmail.com>
 alias thomash Thomas LECLERCQ <me@thomas.sh>
-alias evs Thomas LECLERCQ <t.leclercq@evs.com>
 
 source ~/.config/mutt/default-account
+
+macro index <f2> '<sync-mailbox><enter-command>source ~/.config/mutt/accs/thomasle@mailbox.org<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.config/mutt/accs/t.leclercq@evs.com<enter><change-folder>!<enter>'
 
