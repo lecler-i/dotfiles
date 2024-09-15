@@ -50,7 +50,7 @@ bindsym $mod+8                workspace 8
 bindsym $mod+9                workspace 9
 bindsym $mod+0                workspace 10
 bindsym $mod+bracketright     move workspace to output right
-bindsym $mod+bracketleft                move workspace to output down
+bindsym $mod+bracketleft      move workspace to output down
 bindsym $mod+Shift+1          move container to workspace 1
 bindsym $mod+Shift+2          move container to workspace 2
 bindsym $mod+Shift+3          move container to workspace 3
@@ -86,8 +86,8 @@ bindsym $mod+i                exec xcalib -invert -alter
 bindsym $mod+c                exec tmux-rofi.sh
 bindsym $mod+t                exec task-rofi.sh
 
-bindsym $mod+shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
+bindsym $mod+shift+o move scratchpad
+bindsym $mod+o scratchpad show
 
 bindsym $mod+r mode "resize"
 mode "resize" {
@@ -105,14 +105,14 @@ for_window [window_role="scratch"] move window to scratchpad
 assign [instance="neomutt"] workspace 8
 assign [instance="cmus"] workspace 9
 assign [instance="weechat"] workspace 10
-assign [class="qutebrowser"] workspace 7
+assign [class="firefox"] workspace 6
 
 for_window  [title="^pinentry$"] floating enable
 
 exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
 
 exec        --no-startup-id "dunst"
-exec        --no-startup-id "qutebrowser"
+exec        --no-startup-id "firefox"
 exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t cmus' -r cmus"
 exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t scratchpad' -r scratch"
 exec        --no-startup-id "i3-sensible-terminal --class weechat -e weechat"

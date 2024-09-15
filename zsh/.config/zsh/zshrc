@@ -2,17 +2,20 @@ fpath=( "$XDG_DATA_HOME/zsh/site-functions" $fpath )
 
 export NVM_LAZY_LOAD=true
 
-source $XDG_CONFIG_HOME/zsh/antigen.zsh
-antigen bundle mafredri/zsh-async
-antigen bundle j-arnaiz/common-aliases
-antigen bundle sindresorhus/pure
-antigen apply
+eval "$(sheldon source)"
+
+#source /usr/local/share/zsh-antigen/antigen.zsh
+# source $XDG_CONFIG_HOME/zsh/antigen.zsh
+# antigen bundle mafredri/zsh-async
+# antigen bundle j-arnaiz/common-aliases
+# antigen bundle sindresorhus/pure
+# antigen apply
 
 eval "$(fasd --init auto)"
 
 alias sxiv="sxiv -a"
-alias ls="exa"
-alias cat="bat"
+#alias ls="exa"
+#alias cat="bat"
 alias ncdu="ncdu --color dark"
 alias x="xdg-open"
 
@@ -31,7 +34,7 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt noflowcontrol
 
-# HISTFILE=$XDG_CONFIG_HOME/zsh/zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -39,8 +42,15 @@ setopt appendhistory autocd beep extendedglob notify
 bindkey -v # You can't stop here, you're in Vim country!...
 
 autoload -U promptinit; promptinit
-prompt pure
+# prompt pure
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# Make sure we load autocompletion
+autoload -Uz compinit && compinit
 
+export PATH="$PATH"
+
+[ -f "/usr/local/share/examples/fzf/shell/key-bindings.zsh" ] && source "/usr/local/share/examples/fzf/shell/key-bindings.zsh"
 [ -f "$XDG_CONFIG_HOME"/fzf/fzf.zsh ] && source "$XDG_CONFIG_HOME/fzf/fzf.zsh"
+[ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
+[ -f "/usr/share/fzf/shell/key-bindings.zsh" ] && source "/usr/share/fzf/shell/key-bindings.zsh"
+
