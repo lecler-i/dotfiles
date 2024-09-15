@@ -17,6 +17,7 @@ Account thomasle-mailbox
 MaildirStore thomasle-mailbox-local
 Path ~/.mails/thomasle@mailbox.org/
 Inbox ~/.mails/thomasle@mailbox.org/Inbox
+SubFolders Legacy
 
 Channel thomasle-mailbox
 Far :thomasle-mailbox-remote:
