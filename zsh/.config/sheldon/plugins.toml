@@ -18,8 +18,8 @@ shell = "zsh"
 github = "mafredri/zsh-async"
 
 [plugins.pure]
-local = "/home/tlec/repos/github.com/sindresorhus/pure"
-#github = "sindresorhus/pure"
+#local = "/home/tlec/repos/github.com/sindresorhus/pure"
+github = "sindresorhus/pure"
 
 
 # For example:

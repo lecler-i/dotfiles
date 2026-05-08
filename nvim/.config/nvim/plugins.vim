@@ -29,7 +29,7 @@ Plug 'scrooloose/nerdcommenter'         " For commenting keybinding
 Plug '/usr/share/vim/vimfiles/plugin/fzf.vim'
 Plug 'junegunn/fzf.vim'
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'tag': 'master', 'do': { -> coc#util#install()}}
 Plug 'w0rp/ale'
 "
 " Ocaml / Reason
@@ -47,5 +47,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
 Plug 'rhysd/vim-grammarous'
 
 Plug 'cstrahan/vim-capnp'
+
+Plug 'hrsh7th/nvim-cmp'
+Plug 'kirasok/cmp-hledger'
 
 call plug#end()
