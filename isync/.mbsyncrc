@@ -7,7 +7,7 @@ IMAPAccount thomasle-mailbox
 Host imap.mailbox.org
 User thomasle@mailbox.org
 PassCmd "gopass zxc/mailbox.org/thomasle"
-SSLType IMAPS
+#SSLType IMAPS
 
 # Remote storage
 IMAPStore thomasle-mailbox-remote
@@ -17,7 +17,7 @@ Account thomasle-mailbox
 MaildirStore thomasle-mailbox-local
 Path ~/.mails/thomasle@mailbox.org/
 Inbox ~/.mails/thomasle@mailbox.org/Inbox
-SubFolders Legacy
+SubFolders Verbatim
 
 Channel thomasle-mailbox
 Far :thomasle-mailbox-remote:
@@ -38,7 +38,7 @@ Port 1143
 User t.leclercq@evs.com
 PassCmd "gopass show -o work/evs.com"
 AuthMechs LOGIN
-SSLType None
+#SSLType None
 Timeout 120
 
 IMAPStore tleclercq-evs-remote
@@ -56,6 +56,6 @@ Patterns * !confluence !git
 SyncState *
 Create Near
 
-Group work
-Channel thomasle-mailbox-remote
-Channel thomasle-mailbox-remote
+# Group work
+# Channel thomasle-mailbox-remote
+# Channel thomasle-mailbox-remote
