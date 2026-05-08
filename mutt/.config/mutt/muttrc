@@ -45,9 +45,9 @@ set query_command= "khard email --parsable '%s'"
 
 set edit_headers
 
-alias mailbox Thomas LECLERCQ <thomasle@mailbox.org>
-alias gmail Thomas LECLERCQ <degnus@gmail.com>
-alias thomash Thomas LECLERCQ <me@thomas.sh>
+#alias mailbox Thomas LECLERCQ <thomasle@mailbox.org>
+#alias gmail Thomas LECLERCQ <degnus@gmail.com>
+#alias thomash Thomas LECLERCQ <me@thomas.sh>
 
 source ~/.config/mutt/default-account
 

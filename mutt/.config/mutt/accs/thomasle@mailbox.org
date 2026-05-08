@@ -20,6 +20,6 @@ set crypt_replysign=yes
 set crypt_replyencrypt=yes
 set pgp_default_key="0x8668630491A41722"
 
-mailboxes ="Inbox" ="Sent" ="Archive" ="Draft" ="github-notifications"
+mailboxes ="Inbox" ="Sent" ="Archive" ="Drafts" ="github-notifications"
 
 macro index <f5> "!mbsync thomasle-mailbox^M" "Update through mbsync"

@@ -10,12 +10,17 @@ export XDG_DOWNLOAD_DIR="$HOME/downloads/"
 export XDG_MUSIC_DIR="$HOME/music/"
 export XDG_PICTURES_DIR="$HOME/pictures/"
 export XDG_VIDEOS_DIR="$HOME/videos"
+export XDG_STATE_HOME="$HOME/.local/state/"
 #export XDG_RUNTIME_DIR="/tmp/tlec-xdg-runtime"
 
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+export VDPAU_DRIVER=va_gl
+
+export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 #mkdir -p $XDG_RUNTIME_DIR
 
 #export DOCKER_HOST=tcp://192.168.1.126:2375 docker info
 
 #[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec sway-nvidia
 #export WLR_DRM_DEVICES=/dev/dri/card1
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec sway  --unsupported-gpu > /tmp/sway.log
+#[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec sway  --unsupported-gpu > /tmp/sway.log
