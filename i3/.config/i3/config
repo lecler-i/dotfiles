@@ -20,7 +20,6 @@ client.urgent           #fb4934 #fb4934 #32302f #fb4934
 bindsym $mod+Shift+q          kill
 bindsym $mod+Shift+c          reload
 bindsym $mod+Shift+r          restart
-bindsym $mod+grave            exec $XDG_CONFIG_HOME/polybar/toggle.sh
 
 bindsym $mod+j                focus left
 bindsym $mod+$left            focus left
@@ -62,15 +61,17 @@ bindsym $mod+Shift+8          move container to workspace 8
 bindsym $mod+Shift+9          move container to workspace 9
 bindsym $mod+Shift+0          move container to workspace 10
 
-bindsym XF86AudioRaiseVolume  exec --no-startup-id "amixer -q set Master 2%+ unmute && pkill -USR1 py3status"
-bindsym XF86AudioLowerVolume  exec --no-startup-id "amixer -q set Master 2%- && pkill -USR1 py3status"
-bindsym XF86AudioMute         exec --no-startup-id "amixer -q set Master toggle && pkill -USR1 py3status"
+bindsym XF86AudioRaiseVolume  exec --no-startup-id "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+bindsym XF86AudioLowerVolume  exec --no-startup-id "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+bindsym XF86AudioMute         exec --no-startup-id "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+
 bindsym XF86AudioPlay         exec --no-startup-id mpc -q toggle
 bindsym XF86AudioStop         exec --no-startup-id mpc -q stop
 bindsym XF86AudioNext         exec --no-startup-id mpc -q next
 bindsym XF86AudioPrev         exec --no-startup-id mpc -q prev
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 bindsym Print                 exec scrot -w '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f && rm $f'
 bindsym $mod+a                [title="^.*vim.*$"] focus
@@ -101,17 +102,18 @@ for_window [window_role="scratch"] move window to scratchpad
 assign [instance="neomutt"] workspace 8
 assign [instance="cmus"] workspace 9
 assign [instance="weechat"] workspace 10
-assign [class="firefox"] workspace 6
+assign [class="librewolf"] workspace 6
 
 for_window  [title="^pinentry$"] floating enable
 
 #exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
-exec_always --no-startup-id waybar
+# exec_always --no-startup-id waybar
+bar swaybar_command waybar
 
-exec        --no-startup-id "dunst"
+#exec        --no-startup-id "dunst"
 exec        --no-startup-id "librewolf"
-exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t cmus' -r cmus"
-exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t scratchpad' -r scratch"
 exec        --no-startup-id "i3-sensible-terminal --class weechat -e weechat"
 exec        --no-startup-id "i3-sensible-terminal --class neomutt -e neomutt"
 exec        "i3-sensible-terminal"
+
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XAUTHORITY
