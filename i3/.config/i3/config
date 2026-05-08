@@ -79,12 +79,8 @@ bindsym $mod+x                [class="Chromium"] focus
 
 bindsym $mod+Return           exec $TERMINAL
 bindsym $mod+d                exec rofi -show run
-bindsym $mod+n                exec networkmanager_dmenu
-bindsym $mod+p                exec rofi-pass
-bindsym $mod+l                exec i3lock.sh
+bindsym $mod+l                exec swaylock
 bindsym $mod+i                exec xcalib -invert -alter
-bindsym $mod+c                exec tmux-rofi.sh
-bindsym $mod+t                exec task-rofi.sh
 
 bindsym $mod+shift+o move scratchpad
 bindsym $mod+o scratchpad show
@@ -109,10 +105,11 @@ assign [class="firefox"] workspace 6
 
 for_window  [title="^pinentry$"] floating enable
 
-exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
+#exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
+exec_always --no-startup-id waybar
 
 exec        --no-startup-id "dunst"
-exec        --no-startup-id "firefox"
+exec        --no-startup-id "librewolf"
 exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t cmus' -r cmus"
 exec        --no-startup-id "i3-sensible-terminal -e 'tmux a -t scratchpad' -r scratch"
 exec        --no-startup-id "i3-sensible-terminal --class weechat -e weechat"
